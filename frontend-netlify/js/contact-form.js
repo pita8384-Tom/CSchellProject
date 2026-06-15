@@ -11,9 +11,10 @@ function initContactForm() {
   const messageInput = document.getElementById("kontakt-message");
 
   // Debugging: Prüfen, ob die Elemente gefunden werden
-  console.log("Kontaktformular Elemente:", { kontaktForm, kontaktStatus, kontaktSubmit, nameInput, emailInput, messageInput });
   if (!kontaktForm || !nameInput || !emailInput || !messageInput) {
-    console.error("FEHLER: Nicht alle Kontaktformular-Elemente wurden im HTML gefunden. Bitte IDs prüfen!");
+    // Falls Elemente noch nicht da sind (wegen dynamischem Laden), später erneut versuchen
+    console.warn("Kontaktformular-Elemente noch nicht im DOM. Initialisierung wird verzögert...");
+    return false;
   }
 
   // Basic email validation regex
@@ -124,9 +125,34 @@ function initContactForm() {
       } finally {
         if (kontaktSubmit) {
           kontaktSubmit.disabled = false;
-          kontaktSubmit.textContent = "Nachricht senden";
+          kontaktSubmit.innerHTML = kontaktSubmit._originalContent || "Nachricht senden";
         }
       }
     });
   }
+  return true;
+}
+
+// Automatische Initialisierung, wenn das Dokument bereit ist
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    // Da Komponenten oft verzögert geladen werden, nutzen wir ein Intervall
+    const retryInit = setInterval(() => {
+      if (initContactForm()) {
+        console.log("✅ Kontaktformular erfolgreich initialisiert.");
+        clearInterval(retryInit);
+      }
+    }, 500);
+    
+    // Nach 5 Sekunden aufgeben, falls die Seite nicht existiert
+    setTimeout(() => clearInterval(retryInit), 5000);
+  });
+} else {
+  const retryInit = setInterval(() => {
+    if (initContactForm()) {
+      console.log("✅ Kontaktformular erfolgreich initialisiert.");
+      clearInterval(retryInit);
+    }
+  }, 500);
+  setTimeout(() => clearInterval(retryInit), 5000);
 }
