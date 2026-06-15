@@ -14,9 +14,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const MEDIA_ROOT = path.join(__dirname, "img");
 
-app.get("/", (req, res) => {
-  res.send("Backend is running 🚀");
-});
+//Backend-Server testweise erreichbar, wenn du die Zeilen unten einkommentierst. In Produktion wird der Server über Render oder einen anderen Host gestartet.
+//app.get("/", (req, res) => {
+  //res.send("Backend is running 🚀");
+//});
 
 const FRONTEND_ORIGINS = (process.env.FRONTEND_ORIGINS || "")
   .split(",")
@@ -538,7 +539,9 @@ app.post("/api/contact", async (req, res) => {
 
 // ============= STATISCHE DATEIEN =============
 app.use("/img", express.static(MEDIA_ROOT));
-app.use(express.static(path.join(__dirname, "..", "frontend")));
+app.use(express.static(path.join(__dirname, "../frontend")));
+
+//app.use(express.static(path.join(__dirname, "..", "frontend")));
 
 // Titel / Namen eines Mediums aktualisieren (Bearbeiten)
 app.put("/api/upload/:category/:filename", async (req, res) => {
