@@ -538,7 +538,7 @@ app.post("/api/contact", async (req, res) => {
 
 // ============= STATISCHE DATEIEN =============
 app.use("/img", express.static(MEDIA_ROOT));
-app.use(express.static(path.join(__dirname, "..", "frontend-netlify")));
+app.use(express.static(path.join(__dirname, "..", "frontend")));
 
 // Titel / Namen eines Mediums aktualisieren (Bearbeiten)
 app.put("/api/upload/:category/:filename", async (req, res) => {
