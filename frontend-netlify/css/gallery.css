@@ -1,0 +1,893 @@
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem !important;
+  width: 100%;
+  margin-bottom: 3rem;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.grid.grid-cols-3.mb-12.w-full {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 1rem !important;
+  width: 100% !important;
+  margin-bottom: 3rem !important;
+  padding: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.grid.grid-cols-3.mb-12.w-full > div {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+  aspect-ratio: 4/3 !important;
+  background-color: #f3f4f6 !important;
+  width: 100% !important;
+  height: 33.33vw !important;  
+  max-height: 400px !important;  
+  min-height: 150px !important;  
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.grid.grid-cols-3.mb-12.w-full img {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;  
+  cursor: pointer !important;
+  transition: transform 0.3s ease !important;
+  opacity: 1 !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: inherit !important;
+  max-width: none !important;
+  max-height: none !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+}
+
+.grid.grid-cols-3.mb-12.w-full img:hover {
+  transform: scale(1.05) !important;
+}
+
+@media (min-width: 1201px) {
+  .grid.grid-cols-3.mb-12.w-full > div {
+    height: 26.67vw !important; 
+    max-height: 320px !important;
+    min-height: 120px !important;
+  }
+  
+  .grid.grid-cols-3.mb-12.w-full img {
+    max-width: 500px !important;
+    max-height: 350px !important;
+    object-fit: cover !important;  
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .grid.grid-cols-3.mb-12.w-full > div {
+    height: 28.33vw !important; 
+    max-height: 280px !important;
+    min-height: 110px !important;
+  }
+  
+  .grid.grid-cols-3.mb-12.w-full img {
+    max-width: 400px !important;
+    max-height: 280px !important;
+    object-fit: cover !important;  
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .grid.grid-cols-3.mb-12.w-full {
+    gap: 0.75rem !important;
+    margin-bottom: 2rem !important;
+  }
+  
+  .grid.grid-cols-3.mb-12.w-full > div {
+    height: 30vw !important;  
+    max-height: 210px !important;
+    min-height: 100px !important;
+  }
+  
+  .grid.grid-cols-3.mb-12.w-full img {
+    max-width: 350px !important;
+    max-height: 250px !important;
+    object-fit: cover !important;  
+  }
+}
+
+@media (max-width: 768px) {
+  .grid.grid-cols-3.mb-12.w-full {
+    gap: 0.75rem !important;
+    margin-bottom: 2rem !important;
+  }
+  
+  .grid.grid-cols-3.mb-12.w-full > div {
+    height: 30vw !important; 
+    max-height: 210px !important;
+    min-height: 100px !important;
+  }
+  
+  .grid.grid-cols-3.mb-12.w-full img {
+    max-width: 280px !important;
+    max-height: 210px !important;
+    object-fit: cover !important;  
+  }
+}
+
+@media (max-width: 640px) {
+  .grid.grid-cols-3.mb-12.w-full {
+    gap: 0.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .grid.grid-cols-3.mb-12.w-full > div {
+    height: 28vw !important;  
+    max-height: 200px !important;
+    min-height: 140px !important;
+  }
+  
+  .grid.grid-cols-3.mb-12.w-full img {
+    max-width: 250px !important;
+    max-height: 187px !important;
+    object-fit: cover !important; 
+  }
+}
+
+.gallery-container *,
+.grid.grid-cols-3.mb-12.w-full * {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  aspect-ratio: 4/3;
+  background-color: #f3f4f6;
+  width: 100%;
+  height: 33.33vw;  
+  max-height: 400px;  
+  min-height: 150px;  
+  will-change: transform;  
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.gallery-item:last-child {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.gallery-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.3s ease; 
+  opacity: 1;  
+  
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: inherit !important;
+}
+
+.gallery-image:hover {
+  transform: scale(1.05);
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .gallery-item {
+    height: 26.67vw !important; 
+    max-height: 320px !important;
+    min-height: 120px !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .gallery-item {
+    height: 28.33vw !important;  
+    max-height: 280px !important;
+    min-height: 110px !important;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 768px) {
+  .gallery-container {
+    gap: 0.75rem !important;
+    margin-bottom: 2rem !important;
+  }
+  .gallery-item {
+    height: 30vw !important;  
+    max-height: 240px !important;
+    min-height: 100px !important;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 639px) {
+  .gallery-container {
+    gap: 0.5rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  .gallery-item {
+    height: 50vw !important;  
+    max-height: 200px !important;
+    min-height: 90px !important;
+  }
+}
+
+.intro-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 640px) and (max-width: 768px) {
+  .intro-image {
+    height: 12rem;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 639px) {
+  .intro-image {
+    height: 10rem;
+  }
+}
+
+.gallery-item .body-img,
+.gallery-item .w-full,
+.gallery-item .h-\[600px\],
+.gallery-item .object-cover,
+.gallery-item .cursor-pointer,
+.gallery-item .hover\:scale-105,
+.gallery-item .transition-transform,
+.gallery-item .duration-300,
+.gallery-item img,
+.gallery-item img[class*="body"],
+.gallery-item img[class*="w-full"],
+.gallery-item img[class*="h-"] {
+  
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;  /* Teljes kit�lt�s lev�g�ssal */
+  cursor: pointer !important;
+  transition: transform 0.3s ease !important;
+  opacity: 1 !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: inherit !important;
+  max-width: none !important;
+  max-height: none !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+}
+
+.gallery-item .hover\:scale-105:hover,
+.gallery-item img:hover {
+  transform: scale(1.05) !important;
+}
+
+.gallery-item img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;  
+}
+
+
+@media (min-width: 1600px) {
+  .gallery-item img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 800px !important;    
+    max-height: 350px !important;  
+    object-fit: cover !important;
+  }
+}
+
+@media (min-width: 1201px) and (max-width: 1599px) {
+  .gallery-item img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 600px !important;
+    max-height: 280px !important;
+    object-fit: cover !important;  
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .gallery-item img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 350px !important;
+    max-height: 262px !important;
+    object-fit: cover !important;  
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .gallery-item img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 300px !important;
+    max-height: 225px !important;
+    object-fit: cover !important;  
+  }
+}
+
+@media (min-width: 640px) and (max-width: 768px) {
+  .gallery-item img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 280px !important;
+    max-height: 210px !important;
+    object-fit: cover !important;  
+  }
+}
+
+@media (min-width: 480px) and (max-width: 639px) {
+  .gallery-item img {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 250px !important;
+    max-height: 187px !important;
+    object-fit: cover !important; 
+  }
+}
+
+#page-bodypainting-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+#page-zeichnungen-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+#page-events-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+#page-malerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+#page-bildhauerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+#page-sandmalerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+#page-presse-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+#page-intro-en .relative.z-10.mx-auto.px-6.py-12 {
+  padding-top: 8rem !important;   
+  padding-bottom: 3rem !important; 
+}
+
+#page-zeichnungen .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-events .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-malerei .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-bildhauerei .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-sandmalerei .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-presse .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-intro .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-zeichnungen-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-events-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-malerei-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-bildhauerei-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-sandmalerei-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-presse-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-intro-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white {
+  margin-bottom: 2rem !important; 
+}
+
+@media (min-width: 768px) {
+  #page-zeichnungen .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-events .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-malerei .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-bildhauerei .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-sandmalerei .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-presse .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-intro .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+    #page-zeichnungen-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-events-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-malerei-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-bildhauerei-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-sandmalerei-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-presse-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-intro-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white {
+    margin-bottom: 2.5rem !important; 
+  }
+}
+
+#page-bodypainting-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+#page-zeichnungen-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+#page-events-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+#page-malerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+#page-bildhauerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+#page-sandmalerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+#page-presse-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+#page-intro-en .relative.z-10.mx-auto.px-6.py-12 {
+  padding-top: 8rem !important;    
+  padding-bottom: 3rem !important; 
+}
+
+#page-zeichnungen .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-events .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-malerei .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-bildhauerei .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-sandmalerei .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-presse .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-intro .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-zeichnungen-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-events-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-malerei-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-bildhauerei-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-sandmalerei-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-presse-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+#page-intro-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white {
+  margin-bottom: 2rem !important;  
+}
+
+@media (min-width: 768px) {
+  #page-zeichnungen .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-events .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-malerei .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-bildhauerei .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-sandmalerei .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-presse .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-intro .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+    #page-zeichnungen-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-events-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-malerei-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-bildhauerei-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-sandmalerei-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-presse-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-intro-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white {
+    margin-bottom: 2.5rem !important;  
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  #page-zeichnungen .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-events .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-malerei .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-bildhauerei .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-sandmalerei .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-presse .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-intro .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+    #page-zeichnungen-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-events-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-malerei-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-bildhauerei-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-sandmalerei-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-presse-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white,
+  #page-intro-en .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white {
+    font-size: 2.5rem !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  #page-bodypainting .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-zeichnungen .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-events .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-malerei .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-bildhauerei .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-sandmalerei .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-presse .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-intro .relative.z-10.mx-auto.px-6.py-12,
+  #page-bodypainting-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-zeichnungen-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-events-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-malerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-bildhauerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-sandmalerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-presse-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-intro-en .relative.z-10.mx-auto.px-6.py-12 {
+    padding-top: 7.5rem !important;   
+    padding-bottom: 2rem !important; 
+  }
+}
+
+@media (min-width: 640px) and (max-width: 768px) {
+  #page-bodypainting .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-zeichnungen .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-events .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-malerei .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-bildhauerei .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-sandmalerei .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-presse .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-intro .relative.z-10.mx-auto.px-6.py-12,
+  #page-bodypainting-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-zeichnungen-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-events-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-malerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-bildhauerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-sandmalerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-presse-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-intro-en .relative.z-10.mx-auto.px-6.py-12 {
+    padding-top: 5rem !important;   
+    padding-bottom: 1.5rem !important;
+  }
+
+  @media (min-width: 480px) and (max-width: 639px) {
+  #page-bodypainting .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-zeichnungen .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-events .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-malerei .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-bildhauerei .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-sandmalerei .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-presse .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-intro .relative.z-10.mx-auto.px-6.py-12,
+  #page-bodypainting-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-zeichnungen-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-events-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-malerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-bildhauerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-sandmalerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-presse-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-intro-en .relative.z-10.mx-auto.px-6.py-12 {
+    padding-top: 3rem !important;   
+    padding-bottom: 1.5rem !important; /
+  }
+}
+
+@media (max-width: 479px) {
+  #page-bodypainting .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-zeichnungen .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-events .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-malerei .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-bildhauerei .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-sandmalerei .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-presse .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-intro .relative.z-10.mx-auto.px-6.py-12,
+  #page-bodypainting-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-zeichnungen-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-events-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-malerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-bildhauerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-sandmalerei-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-presse-en .relative.z-10.mx-auto.px-6.py-12.w-full,
+  #page-intro-en .relative.z-10.mx-auto.px-6.py-12 {
+    padding-top: 3rem !important;   
+    padding-bottom: 1.5rem !important; /
+  }
+}
+
+.fixed.right-4.md\:right-8 {
+  transition: all 0.3s ease !important;  
+}
+
+@media (min-width: 769px) {
+  .fixed.right-4.md\:right-8 {
+    top: 6.5rem !important;
+    right: 2rem !important;  
+  }
+}
+
+@media (min-width: 640px) and (max-width: 768px) {
+  .fixed.right-4.md\:right-8 {
+    top: 3.5rem !important;
+    right: 2rem !important;  
+  }
+}
+
+@media (min-width: 480px) and (max-width: 639px) {
+  .fixed.right-4.md\:right-8 {
+  /* position: fixed !important; */
+    top:2rem !important;
+    right: 2rem !important;  
+ }
+} 
+
+@media (max-width: 479px) {
+  .fixed.right-4.md\:right-8 {
+  /* position: fixed !important; */
+    top:2rem !important;
+    right: 2rem !important; 
+ }
+} 
+}
+
+@media (min-width: 769px) {
+.md\:top-24 {
+  top: 6rem !important;  
+}
+}
+
+@media (min-width: 640px) and (max-width: 768px) {
+.md\:top-24 {
+    top: 5rem !important;  
+  }
+}
+
+@media (min-width: 480px) and (max-width: 639px) {
+  .md\:top-24 {
+    top: 3rem !important;  
+    right: 1.5rem !important ;
+  }
+}
+
+@media (max-width: 479px) {
+  .md\:top-24 {
+    top: 5rem !important;  
+    right: 2rem !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .relative.z-10.mx-auto.px-6.py-12.w-full {
+    padding-top: 8rem !important;
+    padding-bottom: 3rem !important;
+  }
+  
+  .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white {
+    font-size: 3rem !important;
+    margin-bottom: 2.5rem !important;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1199px) {
+  .relative.z-10.mx-auto.px-6.py-12.w-full {
+    padding-top: 7.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  
+  .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white {
+    font-size: 2.75rem !important;
+    margin-bottom: 2.25rem !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+  .relative.z-10.mx-auto.px-6.py-12.w-full {
+    padding-top: 7rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  
+  .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white {
+    font-size: 2.5rem !important;
+    margin-bottom: 2rem !important;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 768px) {
+  .relative.z-10.mx-auto.px-6.py-12.w-full {
+    padding-top: 6.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  
+  .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white {
+    font-size: 2.25rem !important;
+    margin-bottom: 1.75rem !important;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 639px) {
+  .relative.z-10.mx-auto.px-6.py-12.w-full {
+    padding-top: 4.5rem !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white {
+    font-size: 1.75rem !important;
+    margin-bottom: 1rem !important;
+  }
+}
+
+@media (max-width: 479px) {
+  .relative.z-10.mx-auto.px-6.py-12.w-full {
+    padding-top: 6rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  
+  .mb-12.md\:mb-16.text-center.text-4xl.md\:text-5xl.font-bold.text-white {
+    font-size: 1.75rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+/* ============================================================
+   HORIZONTAL GALLERY SLIDER
+   ============================================================ */
+
+/* Wrapper holds track + arrow buttons */
+.gallery-slider-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+/* Scrollable image strip */
+.gallery-slider-track {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;           /* Firefox */
+  padding: 0 60px;                  /* Space for arrows */
+}
+.gallery-slider-track::-webkit-scrollbar {
+  display: none;                   /* Chrome/Safari */
+}
+
+/* Each image cell */
+.gallery-slider-item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  border-radius: 8px;
+  overflow: visible !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* Images inside slider � natural proportions, tall */
+.gallery-slider-track img.gallery-img-height,
+.gallery-slider-track .body-img {
+  height: 75vh !important;
+  width: auto !important;
+  max-width: none !important;
+  object-fit: contain !important;
+  display: block;
+  border-radius: 8px;
+}
+
+/* Arrow buttons */
+.gallery-slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px);
+  border: 2px solid rgba(255,255,255,0.3);
+  color: white;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gallery-slider-btn:hover {
+  background: rgba(255,255,255,0.35);
+  transform: translateY(-50%) scale(1.1);
+}
+.gallery-slider-btn--left  { left: 4px; }
+.gallery-slider-btn--right { right: 4px; }
+
+/* -- Lightbox ------------------------------------------------ */
+.gallery-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+.lb-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+}
+.lb-stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  height: 88vh;
+  overflow: hidden;
+}
+.lb-img {
+  max-width: 88vw;
+  max-height: 85vh;
+  object-fit: contain;
+  transform-origin: center center;
+  transition: transform 0.2s ease;
+  border-radius: 4px;
+  user-select: none;
+}
+.lb-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 3rem;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+  opacity: 0.8;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+.lb-arrow:hover { opacity: 1; }
+.lb-prev { left: 16px; }
+.lb-next { right: 16px; }
+.lb-top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.55), transparent);
+  pointer-events: none;
+}
+.lb-counter {
+  color: rgba(255,255,255,0.85);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+.lb-close {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  z-index: 3;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  padding: 0;
+}
+.lb-close:hover { opacity: 1; }
+.lb-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.lb-ctrl-btn {
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.3);
+  color: white;
+  font-size: 1.4rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.lb-ctrl-btn:hover { background: rgba(255,255,255,0.3); }
+.lb-zoom-reset {
+  background: none !important;
+  border: none !important;
+  filter: grayscale(1) brightness(4);
+  font-size: 3rem !important;
+}
+.lb-zoom-reset:hover { background: none !important; }

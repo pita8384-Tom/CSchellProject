@@ -1,0 +1,432 @@
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  /* height: 100%; */ /* Retired - use Tailwind h-full instead */
+  font-size: 11px;
+}
+
+/* Fix browser autofill overriding background/text color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.6) inset !important;
+  caret-color: #ffffff !important;
+}
+
+/* @media (min-width: 1201px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 993px) and (max-width: 1200px) {
+  html {
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 769px) and(max-width: 992px) {
+  html {
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 577px) and(max-width: 768px) {
+  html {
+    font-size: 10px; 
+  }
+}
+
+@media (min-width: 481px) and(max-width: 576px) {
+  html {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 10px;
+  }
+} */
+
+/* @media (max-height: 800px) {
+  html {
+    font-size: 10px;
+  }
+}
+
+@media (max-height: 700px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+@media (max-height: 600px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (max-height: 500px) {
+  html {
+    font-size: 10px;
+  }
+} */
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* height: 100%; */ /* Retired - use Tailwind h-full instead */
+  font-family: Montserrat, sans-serif;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y pinch-zoom;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.page {
+  /* min-height: 100vh; */ /* Retired - use Tailwind min-h-screen instead */
+  /* min-height: -webkit-fill-available; */ /* Retired - use Tailwind min-h-screen instead */
+  /* width: 100%; */ /* Retired - use Tailwind w-full instead */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: background 1.5s ease;
+  overflow: hidden;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Detail pages that need scrolling */
+.intro-detail-page {
+  /* min-height: auto !important; */ /* Retired - use Tailwind min-h-auto instead */
+  /* height: auto !important; */ /* Retired - use Tailwind h-auto instead */
+  align-items: flex-start !important;
+  padding: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+.content {
+  z-index: 10;
+  /* max-width: 800px; */ /* Retired - use Tailwind max-w-3xl instead */
+  /* width: 100%; */ /* Retired - use Tailwind w-full instead */
+  padding: 5rem 1rem;
+  text-align: center;
+  color: white;
+  box-sizing: border-box;
+}
+
+/* Kontakt szekció pozicionálása, hogy látszódjon a KONTAKT szövege */
+#page-2 .content {
+  position: relative;
+  padding-top: 5rem !important; /* 5rem padding, hogy a KONTAKT szövege látszódjon */
+}
+
+/* ── Intro page layout ──────────────────────────────────────── */
+/* Tight left/right padding */
+#page-intro .relative.z-10 {
+  padding-left: 2px !important;
+  padding-right: 2px !important;
+}
+
+/* Each row: stretch so text height = image height */
+#page-intro .mb-16 {
+  align-items: stretch !important;
+  gap: 0 !important;
+}
+
+/* Image fills its cell fully */
+#page-intro .mb-16 img {
+  height: 100% !important;
+  min-height: 200px;
+  object-fit: cover !important;
+  border-radius: 0 !important;
+}
+
+/* Text div: match image height, uppercase */
+#page-intro .mb-16 > div:not([class*="col-span-2"]) {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  text-align: justify !important;
+  letter-spacing: 0.04em;
+  padding: 1.5rem 2rem !important;
+}
+
+/* Kontakt Seite */
+/* Mobil (max-width: 576px) */
+@media (max-width: 576px) {
+  #page-2 .content {
+    padding-top: 4rem !important;
+  }
+}
+
+/* Tablet (577px - 767px) */
+@media (min-width: 577px) and (max-width: 768px) {
+  #page-2 .content {
+    padding-top: 5rem !important;
+  }
+}
+
+/* Small Desktop (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  #page-2 .content {
+    padding-top: 8rem !important;
+  }
+}
+
+/* Large Desktop (1024px - 1200px) */
+@media (min-width: 1024px) and (max-width: 1200px) {
+  #page-2 .content {
+    padding-top: 8rem !important;
+  }
+}
+
+/* Large Desktop (1200px+) */
+@media (min-width: 1200px) {
+  #page-2 .content {
+    padding-top: 8rem !important;
+  }
+}
+
+.space-y-1{
+  margin-top: 1rem !important;
+}
+
+.space-y-2{
+  margin-top: 1rem !important;
+}
+
+.space-y-5 {
+  margin-top: 1rem !important;
+}
+
+@media (min-width: 768px) {
+  #page-1 .md\:h-screen {
+    height: 100vh !important;
+    padding-top: 6rem !important;
+  }
+  
+  #page-1 .uebersicht-grid {
+    height: calc(100vh - 45px) !important;
+    margin-top: 45px !important;
+  }
+}
+
+#page-1 .grid {
+  height: 100vh !important;
+  min-height: 100vh !important;
+}
+
+@media (max-width: 767px) {
+  #page-1 .grid {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    margin-top: 45px !important;
+  }
+  
+  #page-1 .uebersicht-tile {
+    height: calc((100vh - 45px) / 3) !important;
+    min-height: 200px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #page-1 .grid {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    margin-top: 45px !important;
+  }
+
+  #page-1 .md\:h-screen {
+    height: 100vh !important;
+    padding-top: 0px !important;
+  }
+  
+  #page-1 .uebersicht-tile {
+    height: calc((100vh - 45px) / 3) !important;
+    min-height: 200px !important;
+  }
+  
+  #page-1 .uebersicht-tile img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+  
+  #page-1 .uebersicht-tile span {
+    font-size: clamp(0.75rem, 3vw, 1.25rem) !important;
+    margin-bottom: 0.75rem !important;
+    max-width: 95% !important;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 768px) {
+  #page-1 .uebersicht-tile {
+    height: calc((100vh - 45px) / 3) !important;
+    min-height: 220px !important;
+  }
+  
+  #page-1 .uebersicht-tile span {
+    font-size: clamp(1rem, 2.5vw, 1.5rem) !important;
+    margin-bottom: 1rem !important;
+  }
+
+  #page-1 .md\:h-screen {
+    height: 100vh !important;
+    padding-top: 0px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  #page-1 .uebersicht-tile {
+    height: calc((100vh - 45px) / 3) !important;
+    min-height: 180px !important;
+  }
+  
+  #page-1 .uebersicht-tile span {
+    font-size: clamp(0.625rem, 2.5vw, 1rem) !important;
+    margin-bottom: 0.5rem !important;
+    max-width: 98% !important;
+  }
+
+  #page-1 .md\:h-screen {
+    height: 100vh !important;
+    padding-top: 0px !important;
+  }
+}
+
+#page-1 .uebersicht-tile {
+  overflow: hidden !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: flex-end !important;
+  justify-content: center !important;
+}
+
+#page-1 .uebersicht-tile img {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+#page-1 .uebersicht-tile span {
+  position: relative !important;
+  z-index: 10 !important;
+  color: white !important;
+  font-weight: 600 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+@media (max-width: 768px) {
+  #page-1 .uebersicht-tile span {
+    font-size: clamp(0.625rem, 2.5vw, 1.5rem) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #page-1 .uebersicht-tile {
+    min-height: 150px !important;
+  }
+  
+  #page-1 .uebersicht-tile span {
+    font-size: clamp(0.5rem, 3vw, 0.875rem) !important;
+    margin-bottom: 0.25rem !important;
+    padding: 0 0.25rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  #page-1 .grid {
+    height: calc(100vh - 4rem) !important;
+    min-height: calc(100vh - 4rem) !important;
+  }
+  
+  #page-1 .uebersicht-tile {
+    height: calc((100vh - 4rem) / 3) !important;
+    min-height: 180px !important;
+  }
+}
+
+#page-1 .uebersicht-tile span {
+  margin-bottom: 1rem !important;
+  max-width: 90% !important;
+  text-align: center !important;
+}
+
+@media (min-width: 1200px) {
+  #page-1 .uebersicht-tile span {
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  #page-1 .uebersicht-tile span {
+    margin-bottom: 0.5rem !important;
+    max-width: 95% !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid.grid-cols-2.sm\:grid-cols-2.lg\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .flex.h-12.items-center.justify-start.gap-2.rounded-lg.bg-white\/20.px-4.text-sm {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    font-size: 0.875rem !important;
+  }
+  
+  .flex.h-12.items-center.justify-start.gap-2.rounded-lg.bg-white\/20.px-4.text-sm span {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+}
+
+/* Utility Classes */
+.hidden {
+  display: none !important;
+  /* min-height: 0 !important; */ /* Retired - use Tailwind min-h-0 instead */
+  /* height: 0 !important; */ /* Retired - use Tailwind h-0 instead */
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Ensure proper scrolling on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Margin Utilities */
+.uebersicht-tile .mt-16,
+.impressum-section .mt-16,
+.back-button .mt-16 {
+  margin-top: 0px /* Kikapcsolva */
+}
+
+/* .mt-16 {
+  margin-top: 0px !important Kikapcsolva
+} */
+
+.mt-4 {
+  margin-top: 1rem;
+}

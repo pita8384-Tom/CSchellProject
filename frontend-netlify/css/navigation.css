@@ -1,0 +1,640 @@
+/* ==========================================
+   NAVIGATION CSS - Clean & Organized Structure
+   ========================================== */
+
+/* BASE STYLES (Desktop First) */
+/* ========================================== */
+
+/* Navigation Bar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 1rem 2rem;
+  transition: all 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+  backdrop-filter: blur(8px);
+  background: rgba(94, 83, 104, 0.92);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+  transform: translateY(0);
+}
+
+.navbar.navbar-hidden {
+  transform: translateY(-100%);
+}
+
+/* Navigation Container */
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.nav-container-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Logo */
+.nav-logo-link {
+  display: block;
+  margin-left: 0;
+  opacity: 1 !important;
+  cursor: default;
+}
+
+.nav-logo-link:hover {
+  opacity: 1 !important;
+}
+
+.nav-logo-img {
+  height: 50px;
+  width: auto;
+}
+
+.nav-logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  margin-left: 0;
+}
+
+/* Navigation Menu */
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mobile Navigation Menu */
+@media (max-width: 768px) {
+  #nav-menu-desktop {
+    display: none;
+  }
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 0.5rem 0;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Hamburger Menu (Hidden on Desktop) */
+.hamburger {
+  display: none;
+}
+
+/* Show hamburger on mobile */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+    position: absolute;
+    right: 1.2rem;
+    top: 0.9rem;
+    transform: none;
+    z-index: 9999;
+    background: rgba(94, 83, 104, 0.92);
+    border-radius: 5px;
+    padding: 4px 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    pointer-events: auto;
+  }
+  
+  .hamburger span {
+    width: 22px;
+    height: 1.6px;
+  }
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Navigation Dots */
+.nav-dots {
+  position: fixed;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+}
+
+.nav-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  margin: 15px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-dot.active {
+  background: white;
+  transform: scale(1.3);
+}
+
+/* Language Switcher */
+.language-switcher {
+  position: relative;
+  top: auto;
+  right: auto;
+  z-index: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+  font-weight: bold;
+  font-size: 11px;
+  margin-right: 20px;
+}
+
+.language-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  /* margin-left: 10px; */
+}
+
+.language-btn:hover,
+.language-btn.active {
+  background: white;
+  color: rgb(70, 70, 70);
+  font-weight: bold;
+}
+
+/* Scroll to Top Button */
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: white;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-to-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scroll-to-top-btn:hover {
+  background-color: white !important;
+  color: black !important;
+  font-weight: bold !important;
+  /* transform: scale(1.1); */
+}
+
+/* Mobile Language Switcher (Hidden by default) */
+.language-switcher-mobile {
+  display: none;
+}
+
+.language-btn-mobile {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 16px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+}
+
+.language-btn-mobile:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.language-btn-mobile.active {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================
+   TABLET STYLES (min-width: 769px, max-width: 1023px)
+   ========================================== */
+
+@media (min-width: 769px) and (max-width: 1023px) {
+  
+  /* Show desktop menu on tablet */
+  .hamburger {
+    display: none;
+  }
+  
+  .language-switcher {
+    position: relative;
+    top: auto;
+    right: auto;
+    z-index: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  
+}
+
+/* ==========================================
+   MOBILE STYLES (max-width: 768px)
+   ========================================== */
+
+@media (max-width: 768px) {
+  
+  /* Navigation Bar */
+  .navbar {
+    padding: 0.5rem 0.5rem;
+    height: 45px;
+  }
+  
+  /* Navigation Container */
+  .nav-container {
+    padding-left: 1rem;
+    padding-right: 0.5rem;
+    gap: 1rem;
+  }
+  
+  /* Logo */
+  .nav-logo-img {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .nav-logo-link {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Hide Desktop Menu on Mobile */
+  #nav-menu-desktop {
+    display: none;
+  }
+  
+  /* Show Hamburger Menu on Mobile */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+    position: absolute;
+    left: 1.2rem;
+    top: 0.9rem;
+    transform: none;
+    z-index: 9999;
+    background: transparent;
+    border-radius: 5px;
+    padding: 8px 12px;
+    box-shadow: none;
+    pointer-events: auto;
+  }
+  
+  .hamburger span {
+    width: 22px;
+    height: 1.6px;
+  }
+  
+  /* Language Switcher (Mobile Position) */
+  .language-switcher {
+    position: absolute;
+    right: 5rem;
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 11px;
+    margin-right: 20px;
+  }
+  
+  /* Mobile Language Switcher (Hidden since it's in header) */
+  .language-switcher-mobile {
+    display: none;
+  }
+  
+  /* Mobile Menu Items */
+  #nav-menu-mobile {
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    margin-top: 0.5rem;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    min-width: 200px;
+  }
+  
+  #nav-menu-mobile ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #nav-menu-mobile li {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  #nav-menu-mobile li:last-child {
+    border-bottom: none;
+  }
+  
+  #nav-menu-mobile a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    border-bottom: 2px solid transparent;
+  }
+  
+  #nav-menu-mobile a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-bottom-color: white;
+    transform: translateX(5px);
+  }
+  
+  #nav-menu-mobile a:active {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(3px);
+  }
+  
+}
+
+/* Slide-in Menu */
+.slide-menu {
+  position: fixed;
+  top: 100%;
+  right: -300px;
+  width: 150px;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  transition: right 0.3s ease;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.slide-menu.active {
+  right: 0;
+}
+
+.slide-menu-header {
+  padding: 0.5rem 0.5rem 0.3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+}
+
+.slide-menu-close {
+  color: black;
+  font-size: 1.5rem;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.slide-menu-close:hover {
+  background: white;
+  color: black;
+  transform: none;
+  border-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  font-weight: bold;
+}
+
+/* Slide Menu - Individual Element Styling */
+.slide-menu-content {
+  padding: 0.5rem 0.5rem 0rem;
+  font-size: 16px;
+}
+
+.slide-menu-close {
+  font-size: 14px;
+}
+
+.slide-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.slide-menu li {
+  margin-bottom: 0.3rem;
+}
+
+.slide-menu a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+/* Hover állapot - Menü linkek */
+.slide-menu-content a:hover {
+  background: white;
+  transform: translateX(-2px);
+  color: black;
+  font-weight: bold;
+  border-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+}
+
+/* Fókusz állapot (billentyűzet navigációhoz) */
+.slide-menu a:focus {
+  outline: 2px solid white;
+  outline-offset: 2px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Overlay for slide menu */
+.slide-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.slide-menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Logo (Login Function) */
+.nav-logo-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  transition: all 0.3s ease;
+  margin-left: 10px;
+  margin-top: 2px;
+}
+
+/* Hamburger Menu (Mobile) */
+.hamburger-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  cursor: pointer;
+  padding: 7px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: absolute;
+  right: 20px;
+  top: auto;
+}
+
+.hamburger-mobile:hover {
+  background: white;
+}
+
+.hamburger-mobile span {
+  width: 22px;
+  height: 2px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.hamburger-mobile:hover span {
+  background: rgb(70, 70, 70);
+}
+
+/* Desktop State */
+@media (min-width: 769px) {
+  .logo-img {
+    height: 48px;
+  }
+  
+  .hamburger-mobile {
+    display: none;
+  }
+}
+
+/* Mobile State */
+@media (max-width: 768px) {
+  .logo-img {
+    height: 32px;
+  }
+  
+  /* Menu Active State */
+  .hamburger-mobile.menu-active {
+    background: white;
+  }
+  
+  .hamburger-mobile.menu-active span {
+    background: rgb(70, 70, 70);
+  }
+  
+  .hamburger-mobile.menu-active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+  
+  .hamburger-mobile.menu-active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger-mobile.menu-active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+}

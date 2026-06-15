@@ -1,0 +1,45 @@
+# Auto-generated build output (never edit manually, use components/)
+index.html
+index-en.html
+
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Uploaded gallery images (exclude from git)
+# img/bodypainting/*
+# img/zeichnungen/*
+# img/events/*
+# img/malerei/*
+# img/bildhauerei/*
+# img/sandmalerei/*
+# img/presse/*
+
+# Gallery metadata (stored in backend folder)
+backend/gallery-data.json
+
+# Keep folder structure but ignore contents
+!img/**/.gitkeep
+
+# Environment variables
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Local Netlify folder
+.netlify

@@ -1,0 +1,163 @@
+    <!-- Modals for Gallery Categories -->
+    <!-- Bodypainting Modal -->
+    <div id="bodypainting-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90">
+      <div class="relative h-full w-full overflow-y-auto">
+        <button id="close-bodypainting" class="fixed right-8 top-8 z-50 text-4xl text-white hover:text-purple-400 transition">&times;</button>
+        <div class="container mx-auto px-6 py-20">
+          <h2 class="mb-12 text-center text-5xl font-bold text-white">Bodypainting</h2>
+          <div class="grid grid-cols-3 gap-4 max-w-7xl mx-auto">
+            <!-- Placeholder images - replace with actual bodypainting images -->
+            <img
+              src="img/bodypainting/bodypainting_static.jpg"
+              alt="Bodypainting 1"
+              class="body-img w-full h-64 object-cover rounded-lg cursor-pointer hover:opacity-80 transition"
+            />
+            <img
+              src="img/bodypainting/bodypainting_static.jpg"
+              alt="Bodypainting 2"
+              class="body-img w-full h-64 object-cover rounded-lg cursor-pointer hover:opacity-80 transition"
+            />
+            <img
+              src="img/bodypainting/bodypainting_static.jpg"
+              alt="Bodypainting 3"
+              class="body-img w-full h-64 object-cover rounded-lg cursor-pointer hover:opacity-80 transition"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Zeichnungen Modal -->
+    <div id="zeichnungen-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90">
+      <div class="relative h-full w-full overflow-y-auto">
+        <button id="close-zeichnungen" class="fixed right-8 top-8 z-50 text-4xl text-white hover:text-purple-400 transition">&times;</button>
+        <div class="container mx-auto px-6 py-20">
+          <h2 class="mb-12 text-center text-5xl font-bold text-white">Zeichnungen</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Add zeichnungen images here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Events Modal -->
+    <div id="events-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90">
+      <div class="relative h-full w-full overflow-y-auto">
+        <button id="close-events" class="fixed right-8 top-8 z-50 text-4xl text-white hover:text-purple-400 transition">&times;</button>
+        <div class="container mx-auto px-6 py-20">
+          <h2 class="mb-12 text-center text-5xl font-bold text-white">Events</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Add events images here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Malerei Modal -->
+    <div id="malerei-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90">
+      <div class="relative h-full w-full overflow-y-auto">
+        <button id="close-malerei" class="fixed right-8 top-8 z-50 text-4xl text-white hover:text-purple-400 transition">&times;</button>
+        <div class="container mx-auto px-6 py-20">
+          <h2 class="mb-12 text-center text-5xl font-bold text-white">Malerei</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Add malerei images here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bildhauerei Modal -->
+    <div id="bildhauerei-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90">
+      <div class="relative h-full w-full overflow-y-auto">
+        <button id="close-bildhauerei" class="fixed right-8 top-8 z-50 text-4xl text-white hover:text-purple-400 transition">&times;</button>
+        <div class="container mx-auto px-6 py-20">
+          <h2 class="mb-12 text-center text-5xl font-bold text-white">Bildhauerei</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Add bildhauerei images here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sandmalerei Modal -->
+    <div id="sandmalerei-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90">
+      <div class="relative h-full w-full overflow-y-auto">
+        <button id="close-sandmalerei" class="fixed right-8 top-8 z-50 text-4xl text-white hover:text-purple-400 transition">&times;</button>
+        <div class="container mx-auto px-6 py-20">
+          <h2 class="mb-12 text-center text-5xl font-bold text-white">Sandmalerei</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Add sandmalerei images here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Presse Modal -->
+    <div id="presse-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90">
+      <div class="relative h-full w-full overflow-y-auto">
+        <button id="close-presse" class="fixed right-8 top-8 z-50 text-4xl text-white hover:text-purple-400 transition">&times;</button>
+        <div class="container mx-auto px-6 py-20">
+          <h2 class="mb-12 text-center text-5xl font-bold text-white">Presse</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Add presse images here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lightbox Modal for Individual Images -->
+    <div id="lightbox-modal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/85 backdrop-blur-sm">
+      <!-- Close Button - Fixed to viewport, top right -->
+      <button
+        id="close-lightbox"
+        class="fixed top-24 right-8 z-[70] w-14 h-14 flex items-center justify-center text-white hover:text-purple-400 bg-purple-900/90 hover:bg-purple-600 rounded-full transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl border-2 border-white/50"
+      >
+        <i class="fas fa-times text-2xl font-bold"></i>
+      </button>
+
+      <!-- Previous Arrow -->
+      <button
+        id="lightbox-prev"
+        class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 text-white/80 hover:text-purple-400 transition-all duration-300 hover:scale-110 active:scale-95 text-[3.5rem] hidden"
+      >
+        <i class="fas fa-chevron-left drop-shadow-lg"></i>
+      </button>
+
+      <!-- Next Arrow -->
+      <button
+        id="lightbox-next"
+        class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 text-white/80 hover:text-purple-400 transition-all duration-300 hover:scale-110 active:scale-95 text-[3.5rem] hidden"
+      >
+        <i class="fas fa-chevron-right drop-shadow-lg"></i>
+      </button>
+
+      <div class="relative flex items-center justify-center w-full h-full px-4 md:px-24 py-20">
+        <img id="lightbox-img" src="" alt="" class="max-h-[85vh] max-w-full object-contain rounded-lg shadow-2xl" />
+      </div>
+
+      <!-- Image title at bottom with simple underline -->
+      <div id="lightbox-title" class="absolute bottom-24 left-1/2 -translate-x-1/2 text-white px-8 py-4 max-w-3xl text-center">
+        <p class="text-xl md:text-2xl font-bold tracking-wide drop-shadow-lg mb-2">Image Title</p>
+        <div class="w-24 h-1 bg-white/80 mx-auto rounded-full"></div>
+      </div>
+
+      <!-- Image counter with enhanced styling -->
+      <div
+        id="lightbox-counter"
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white text-base md:text-lg font-semibold bg-black/60 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-lg"
+      >
+        <span id="lightbox-current" class="text-white">1</span>
+        <span class="text-white/60 mx-1">/</span>
+        <span id="lightbox-total" class="text-white/80">1</span>
+      </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button
+      id="scroll-to-top"
+      class="scroll-to-top-btn"
+      onmouseover="this.style.backgroundColor='rgba(94, 83, 104, 0.92)'"
+      onmouseout="this.style.backgroundColor='#111827'"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>

@@ -1,0 +1,2140 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload - Caroline Schell Admin</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/runtime-config.js"></script>
+    <script src="js/config.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Montserrat, sans-serif;
+        /* Background is now handled by Tailwind classes on the body tag */
+      }
+
+      .admin-header {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 1.5rem 2rem;
+        border-radius: 1rem;
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      }
+
+      .admin-title {
+        color: white;
+        font-size: 1.25rem; /* Smaller on mobile */
+        font-weight: 700;
+      }
+
+      .logout-btn {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-size: 0.875rem; /* Smaller on mobile */
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .logout-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+      }
+
+      /* Category Selection View */
+      .selection-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      }
+
+      .selection-title {
+        color: white;
+        font-size: 2rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .category-card-btn {
+        background: rgba(255, 255, 255, 0.15);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        padding: 2rem 1.5rem;
+        border-radius: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: white;
+        text-align: center;
+      }
+
+      .category-card-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .category-card-btn i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      .category-card-btn .category-name {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+
+      /* Upload Management View */
+      .management-container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .back-btn {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .back-btn:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateX(-4px);
+      }
+
+      .current-category-header {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 1.5rem;
+        border-radius: 1rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .current-category-header h2 {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      .upload-form-card,
+      .gallery-management-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 1.5rem;
+        border-radius: 1rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+      }
+
+      .form-section-title {
+        color: white;
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-label {
+        display: block;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 0.875rem;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 0.5rem;
+        color: white;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-input:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+
+      .form-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .form-checkbox {
+        margin-right: 0.5rem;
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+      }
+
+      .form-help {
+        display: block;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+        font-style: italic;
+      }
+
+      .file-type-selector {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .file-type-btn {
+        flex: 1;
+        padding: 0.875rem;
+        background: rgba(255, 255, 255, 0.15);
+        color: rgba(255, 255, 255, 0.7);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .file-type-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      .file-type-btn.active {
+        background: rgba(255, 255, 255, 0.3);
+        border-color: white;
+        color: white;
+      }
+
+      .upload-area {
+        border: 2px dashed rgba(255, 255, 255, 0.5);
+        border-radius: 0.5rem;
+        padding: 3rem 2rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .upload-area:hover,
+      .upload-area.dragging {
+        border-color: white;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .upload-icon {
+        font-size: 3.5rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 1rem;
+      }
+
+      .upload-text {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .file-input {
+        display: none;
+      }
+
+      .preview-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .preview-item {
+        position: relative;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.3);
+        aspect-ratio: 1;
+      }
+
+      .preview-item img,
+      .preview-item video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .preview-remove {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background: rgba(255, 0, 0, 0.9);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .preview-remove:hover {
+        background: red;
+        transform: scale(1.1);
+      }
+
+      .upload-btn {
+        width: 100%;
+        padding: 1rem;
+        background: rgba(76, 175, 80, 0.3);
+        border: 2px solid rgba(76, 175, 80, 0.5);
+        border-radius: 0.5rem;
+        color: white;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 1.5rem;
+      }
+
+      .upload-btn:hover:not(:disabled) {
+        background: rgba(76, 175, 80, 0.5);
+        border-color: rgba(76, 175, 80, 0.7);
+        transform: translateY(-2px);
+      }
+
+      .upload-btn:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      .gallery-items-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .gallery-item {
+        position: relative;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .gallery-item video {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .gallery-item-info {
+        padding: 0.75rem;
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      .gallery-item-title {
+        color: white;
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+
+      .gallery-item-meta {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.8rem;
+      }
+
+      .gallery-item-delete {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background: rgba(255, 0, 0, 0.9);
+        color: white;
+        border: none;
+        border-radius: 0.25rem;
+        padding: 0.5rem 0.75rem;
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 600;
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      .gallery-item:hover .gallery-item-delete {
+        opacity: 1;
+      }
+
+      .gallery-item-delete:hover {
+        background: red;
+      }
+
+      .empty-state {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 3rem 2rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 1rem;
+      }
+    </style>
+    <script>
+      // Add responsive meta tag for TailwindCSS
+      tailwind.config = {
+        theme: {
+          extend: {
+            screens: {
+              md: "768px",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="min-h-screen p-4 bg-gradient-to-br from-gray-900 to-blue-900 md:p-8">
+    <div class="admin-header">
+      <div style="display: flex; align-items: center; gap: 1rem">
+        <h1 class="admin-title"><i class="fas fa-upload"></i> Medien-Upload Verwaltung</h1>
+        <a href="index.html" class="logout-btn" style="background: rgba(59, 130, 246, 0.2); margin-left: 1rem" title="Zurück zur Homepage">
+          <i class="fas fa-home"></i> Homepage
+        </a>
+      </div>
+      <button class="logout-btn" onclick="adminLogout()"><i class="fas fa-sign-out-alt"></i> Abmelden</button>
+    </div>
+
+    <!-- Category Selection View -->
+    <div id="category-selection-view">
+      <div class="selection-container">
+        <h2 class="selection-title">Kategorie auswählen</h2>
+        <div class="category-grid" id="category-grid">
+          <!-- Categories will be generated here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Upload Management View -->
+    <div id="upload-management-view" style="display: none">
+      <div class="management-container">
+        <button class="back-btn" onclick="goBackToCategories()"><i class="fas fa-arrow-left"></i> Zurück zu den Kategorien</button>
+
+        <div class="current-category-header">
+          <h2 id="current-category-title"></h2>
+        </div>
+
+        <!-- Upload Form -->
+        <div class="upload-form-card">
+          <h3 class="form-section-title"><i class="fas fa-upload"></i> Neues Medium hochladen</h3>
+
+          <div class="form-group">
+            <label class="form-label">Dateityp</label>
+            <div class="file-type-selector">
+              <button class="file-type-btn active" data-type="image"><i class="fas fa-image"></i> Bild</button>
+              <button class="file-type-btn" data-type="video"><i class="fas fa-video"></i> Video</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Titel</label>
+            <input type="text" id="upload-title" class="form-input" placeholder="Titel für dieses Medium eingeben" />
+          </div>
+
+          <div class="form-group" style="position:relative;">
+            <label class="form-label">Thema / Unterordner <span style="color: #ef4444;">*</span></label>
+            <input type="text" id="thema-name" class="form-input" placeholder="z.B. Fluo Abstrakt, Ausstellung Galleria Colora Locarno" autocomplete="off" required/>
+            <div id="thema-dropdown" style="display:none; position:absolute; left:0; right:0; background:#fff; border:1px solid #d1d5db; border-radius:0.5rem; box-shadow:0 4px 12px rgba(0,0,0,0.18); z-index:200; max-height:210px; overflow-y:auto; margin-top:2px;"></div>
+            <div id="thema-tag-display" style="display:none; margin-top:0.5rem;"></div>
+            <small class="form-help">Alle Medien müssen in einen Unterordner/Thema hochgeladen werden.</small>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Datei(en) auswählen</label>
+            <div class="p-4 upload-area md:p-12" id="upload-drop-area">
+              <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+              <div class="upload-text">Klicken oder Dateien hierher ziehen</div>
+            </div>
+            <input type="file" id="file-input" class="file-input" accept="image/*,video/mp4,video/webm,video/mov" multiple />
+          </div>
+
+          <div id="preview-container" class="preview-grid"></div>
+
+          <button class="upload-btn" id="submit-upload-btn" disabled><i class="fas fa-upload"></i> Hochladen</button>
+        </div>
+
+        <!-- Current Gallery Items -->
+        <div class="gallery-management-card">
+          <h3 class="form-section-title"><i class="fas fa-images"></i> Aktuelle Galerie-Medien</h3>
+          <div id="current-gallery-items" class="gallery-items-grid">
+            <!-- Medien werden hier geladen -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="admin-config.js"></script>
+    <script>
+      // Protect this page
+      protectAdminPage();
+
+      // Current state
+      let currentCategory = null;
+      let lastGalleryLoadId = 0; // Track which gallery load is the most recent
+      let availableThemas = [];
+      let currentFileType = "image";
+      let selectedFiles = [];
+      let sortOrderSubcategories = localStorage.getItem("sortOrderSubcategories") || "newest"; // newest, oldest, aToZ, zToA
+
+      // Pausiert alle anderen Videos im Dashboard, wenn ein neues gestartet wird
+      document.addEventListener('play', function(e) {
+        if (e.target.tagName === 'VIDEO') {
+          document.querySelectorAll('video').forEach(v => {
+            if (v !== e.target) v.pause();
+          });
+        }
+      }, true);
+
+      // Initialize
+      // Check if backend server is running
+      async function checkServerStatus() {
+        try {
+          const response = await fetch(window.APP_CONFIG.getEndpoint("/api/config"), {
+            method: "GET",
+            timeout: 5000,
+          });
+          if (response.ok) {
+            console.log("✅ Server läuft - Upload ist bereit");
+            return true;
+          }
+        } catch (error) {
+          console.error("❌ Server läuft NICHT");
+          showServerErrorBanner();
+          return false;
+        }
+      }
+
+      function showServerErrorBanner() {
+        const banner = document.createElement("div");
+        banner.style.position = "fixed";
+        banner.style.top = "0";
+        banner.style.left = "0";
+        banner.style.right = "0";
+        banner.style.background = "#d32f2f";
+        banner.style.color = "white";
+        banner.style.padding = "1.5rem";
+        banner.style.textAlign = "center";
+        banner.style.fontSize = "1.1rem";
+        banner.style.fontWeight = "bold";
+        banner.style.zIndex = "10000";
+        banner.innerHTML = `
+          ❌ <strong>FEHLER: Backend-Server läuft nicht!</strong><br>
+          <span style="font-size: 0.9rem; margin-top: 0.5rem; display: block;">
+            Bitte öffne ein Terminal und führe aus: <code style="background: rgba(0,0,0,0.3); padding: 0.3rem 0.6rem; border-radius: 0.3rem;">npm start</code>
+          </span>
+        `;
+        document.body.insertBefore(banner, document.body.firstChild);
+      }
+
+      async function init() {
+        const serverRunning = await checkServerStatus();
+        renderCategorySelection();
+        setupEventListeners();
+      }
+
+      // Render category selection screen
+      function renderCategorySelection() {
+        const grid = document.getElementById("category-grid");
+        grid.innerHTML = "";
+
+        Object.entries(ADMIN_CONFIG.categories).forEach(([key, category]) => {
+          const card = document.createElement("div");
+          card.className = "category-card-btn";
+          card.innerHTML = `
+            <i class="fas fa-folder"></i>
+            <div class="category-name">${category.name}</div>
+          `;
+          card.onclick = () => selectCategory(key, category);
+          grid.appendChild(card);
+        });
+      }
+
+      // Select a category
+      function selectCategory(key, category) {
+        currentCategory = { key, ...category };
+        document.getElementById("category-selection-view").style.display = "none";
+        document.getElementById("upload-management-view").style.display = "block";
+        document.getElementById("current-category-title").textContent = category.name;
+        loadGalleryItems();
+        loadAvailableThemas(key);
+      }
+
+      async function loadAvailableThemas(categoryKey) {
+        availableThemas = [];
+        try {
+          const resp = await fetch(window.APP_CONFIG.getEndpoint(`/api/gallery/${categoryKey}`));
+          if (!resp.ok) return;
+          const data = await resp.json();
+          availableThemas = Object.keys(data.subgalleries || {}).sort();
+        } catch (e) {
+          availableThemas = [];
+        }
+      }
+
+      // Go back to category selection
+      function goBackToCategories() {
+        currentCategory = null;
+        selectedFiles = [];
+        document.getElementById("category-selection-view").style.display = "block";
+        document.getElementById("upload-management-view").style.display = "none";
+        resetForm();
+      }
+
+      // Setup all event listeners
+      function setupEventListeners() {
+        // File type selector
+        document.querySelectorAll(".file-type-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            document.querySelectorAll(".file-type-btn").forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            currentFileType = btn.dataset.type;
+
+            const fileInput = document.getElementById("file-input");
+            if (currentFileType === "image") {
+              fileInput.accept = "image/*";
+            } else {
+              fileInput.accept = "video/mp4,video/webm";
+            }
+
+            selectedFiles = [];
+            updatePreview();
+          });
+        });
+
+        // Sub-category checkbox removed - now using Thema text field
+
+        // Upload area
+        const uploadArea = document.getElementById("upload-drop-area");
+        const fileInput = document.getElementById("file-input");
+
+        uploadArea.addEventListener("click", () => fileInput.click());
+
+        uploadArea.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          uploadArea.classList.add("dragging");
+        });
+
+        uploadArea.addEventListener("dragleave", () => {
+          uploadArea.classList.remove("dragging");
+        });
+
+        uploadArea.addEventListener("drop", (e) => {
+          e.preventDefault();
+          uploadArea.classList.remove("dragging");
+          handleFiles(e.dataTransfer.files);
+        });
+
+        fileInput.addEventListener("change", (e) => {
+          handleFiles(e.target.files);
+        });
+
+        // Upload button
+        document.getElementById("submit-upload-btn").addEventListener("click", uploadFiles);
+
+        // Thema-Feld: Tag + Dropdown
+        const themaInput = document.getElementById("thema-name");
+        const tagBox = document.getElementById("thema-tag-display");
+        const dropdownEl = document.getElementById("thema-dropdown");
+
+        function updateThemaTag(val) {
+          tagBox.innerHTML = "";
+          if (val.trim()) {
+            const span = document.createElement("span");
+            span.style.cssText = "display:inline-flex;align-items:center;gap:0.4rem;background:#3b82f6;color:#fff;padding:0.25rem 0.7rem 0.25rem 0.6rem;border-radius:999px;font-size:0.8rem;font-weight:600;box-shadow:0 1px 4px rgba(0,0,0,0.15);";
+            const icon = document.createElement("i");
+            icon.className = "fas fa-tag";
+            icon.style.fontSize = "0.7rem";
+            span.appendChild(icon);
+            span.appendChild(document.createTextNode(" " + val.trim()));
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.textContent = "\xd7";
+            btn.style.cssText = "background:none;border:none;color:#fff;cursor:pointer;font-size:1rem;line-height:1;padding:0;margin-left:0.3rem;opacity:0.8;";
+            btn.addEventListener("click", () => { themaInput.value = ""; themaInput.dispatchEvent(new Event("input")); });
+            span.appendChild(btn);
+            tagBox.appendChild(span);
+            tagBox.style.display = "block";
+          } else {
+            tagBox.style.display = "none";
+          }
+        }
+
+        function renderThemaDropdown(filter) {
+          const q = filter.trim().toLowerCase();
+          const items = availableThemas.filter(t => !q || t.toLowerCase().includes(q));
+          dropdownEl.innerHTML = "";
+          if (!items.length) { dropdownEl.style.display = "none"; return; }
+          items.forEach(t => {
+            const item = document.createElement("div");
+            item.textContent = t;
+            item.style.cssText = "padding:0.5rem 0.85rem;cursor:pointer;font-size:0.875rem;color:#374151;border-bottom:1px solid #f3f4f6;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;";
+            item.addEventListener("mousedown", (e) => {
+              e.preventDefault();
+              themaInput.value = t;
+              themaInput.dispatchEvent(new Event("input"));
+              dropdownEl.style.display = "none";
+            });
+            item.addEventListener("mouseover", () => item.style.background = "#eff6ff");
+            item.addEventListener("mouseout", () => item.style.background = "");
+            dropdownEl.appendChild(item);
+          });
+          dropdownEl.style.display = "block";
+        }
+
+        themaInput.addEventListener("focus", function () {
+          if (availableThemas.length) renderThemaDropdown(this.value);
+        });
+        themaInput.addEventListener("input", function () {
+          updateThemaTag(this.value);
+          if (availableThemas.length) renderThemaDropdown(this.value);
+        });
+        themaInput.addEventListener("blur", function () {
+          setTimeout(() => { dropdownEl.style.display = "none"; }, 150);
+        });
+      }
+
+      // Handle file selection
+      function handleFiles(files) {
+        const fileArray = Array.from(files);
+
+        fileArray.forEach((file) => {
+          // Validate file type
+          if (currentFileType === "image" && !file.type.startsWith("image/")) return;
+          if (currentFileType === "video" && !file.type.startsWith("video/")) return;
+
+          selectedFiles.push(file);
+        });
+
+        updatePreview();
+      }
+
+      // Update file preview
+      function updatePreview() {
+        const container = document.getElementById("preview-container");
+        const uploadBtn = document.getElementById("submit-upload-btn");
+
+        container.innerHTML = "";
+
+        selectedFiles.forEach((file, index) => {
+          const preview = document.createElement("div");
+          preview.className = "preview-item";
+
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            if (currentFileType === "image") {
+              preview.innerHTML = `
+                <img src="${e.target.result}" alt="${file.name}">
+                <button class="preview-remove" onclick="removeSelectedFile(${index})">&times;</button>
+              `;
+            } else {
+              preview.innerHTML = `
+                <video src="${e.target.result}"></video>
+                <button class="preview-remove" onclick="removeSelectedFile(${index})">&times;</button>
+              `;
+            }
+          };
+          reader.readAsDataURL(file);
+
+          container.appendChild(preview);
+        });
+
+        uploadBtn.disabled = selectedFiles.length === 0;
+      }
+
+      // Remove selected file
+      function removeSelectedFile(index) {
+        selectedFiles.splice(index, 1);
+        updatePreview();
+      }
+
+      // Upload files - NEW: Upload to backend server instead of localStorage
+      async function uploadFiles() {
+        if (!currentCategory || selectedFiles.length === 0) return;
+
+        const mainTitle = document.getElementById("upload-title").value.trim();
+        const themaName = document.getElementById("thema-name").value.trim();
+
+        // Thema ist jetzt erforderlich (alle Dateien müssen in einen Unterordner)
+        if (!themaName) {
+          alert("Bitte geben Sie ein Thema / einen Unterordner ein");
+          return;
+        }
+
+        let filesProcessed = 0;
+        let totalFiles = selectedFiles.length;
+        function showUploadConfirmation(count) {
+          let confirmationBar = document.getElementById("upload-confirmation-bar");
+          if (!confirmationBar) {
+            confirmationBar = document.createElement("div");
+            confirmationBar.id = "upload-confirmation-bar";
+            confirmationBar.style.position = "fixed";
+            confirmationBar.style.top = "20px";
+            confirmationBar.style.left = "50%";
+            confirmationBar.style.transform = "translateX(-50%)";
+            confirmationBar.style.background = "rgba(76,175,80,0.95)";
+            confirmationBar.style.color = "white";
+            confirmationBar.style.padding = "1rem 2rem";
+            confirmationBar.style.borderRadius = "0.75rem";
+            confirmationBar.style.fontWeight = "700";
+            confirmationBar.style.fontSize = "1.1rem";
+            confirmationBar.style.zIndex = "9999";
+            document.body.appendChild(confirmationBar);
+          }
+          confirmationBar.textContent = `Erfolgreich ${count} Datei(en) hochgeladen!`;
+          confirmationBar.style.display = "block";
+          setTimeout(() => {
+            confirmationBar.style.display = "none";
+          }, 2500);
+        }
+
+        // Lade-Anzeige erstellen
+        const uploadLoadingBar = document.createElement("div");
+        Object.assign(uploadLoadingBar.style, {
+          position: "fixed", top: "20px", left: "50%", transform: "translateX(-50%)",
+          background: "rgba(33,150,243,0.95)", color: "white",
+          padding: "1rem 2rem", borderRadius: "0.75rem",
+          fontWeight: "700", fontSize: "1.1rem", zIndex: "10000",
+          boxShadow: "0 4px 16px rgba(0,0,0,0.25)"
+        });
+        uploadLoadingBar.textContent = `Wird hochgeladen\u2026  0 / ${totalFiles}`;
+        document.body.appendChild(uploadLoadingBar);
+
+        // Upload each file to the server
+        for (let index = 0; index < selectedFiles.length; index++) {
+          const file = selectedFiles[index];
+
+          const titleToUse = mainTitle || file.name;
+
+          const formData = new FormData();
+          formData.append("file", file);
+          // Fallback: if no category selected, use 'general'
+          const categoryKey = currentCategory && currentCategory.key ? currentCategory.key : "general";
+          formData.append("category", categoryKey);
+          formData.append("title", titleToUse);
+          formData.append("isSubcategory", themaName ? "true" : "false");
+          formData.append("fileType", currentFileType);
+          if (themaName) {
+            formData.append("subcategoryId", themaName);
+          }
+
+          try {
+            // Test server connectivity first (ohne Timeout, der Server braucht Zeit)
+            console.log("🔍 Testing server connectivity...");
+            const testResponse = await fetch(window.APP_CONFIG.getEndpoint("/api/config"), {
+              signal: AbortSignal.timeout(30000) // 30 Sekunden Timeout statt 5
+            });
+            console.log("🔍 Test response status:", testResponse.status);
+            if (!testResponse.ok) {
+              throw new Error("Server not responding correctly");
+            }
+            
+            // Kategorie als Query-Parameter anfügen
+            const uploadUrl = window.APP_CONFIG.getEndpoint(`/api/upload?category=${encodeURIComponent(categoryKey)}`);
+            console.log("🚀 Starting upload to:", uploadUrl);
+            console.log("📁 FormData contents:");
+            for (let [key, value] of formData.entries()) {
+              console.log(`  ${key}:`, value);
+            }
+            
+            const response = await fetch(uploadUrl, {
+              method: "POST",
+              body: formData,
+              signal: AbortSignal.timeout(300000), // 5 minutes timeout for large files
+            });
+
+            console.log("📡 Response status:", response.status);
+            console.log("📡 Response headers:", response.headers);
+
+            if (!response.ok) {
+              throw new Error(`Upload failed: ${response.statusText}`);
+            }
+
+            const result = await response.json();
+            console.log("✅ Upload successful:", result);
+
+            filesProcessed++;
+            uploadLoadingBar.textContent = `Wird hochgeladen\u2026  ${filesProcessed} / ${totalFiles}`;
+            if (filesProcessed === totalFiles) {
+              showUploadConfirmation(totalFiles);
+              // Only clear selected files and preview, not the whole form
+              selectedFiles = [];
+              updatePreview();
+              // Warte auf loadGalleryItems und zeige Error wenn es fehlschlägt
+              await loadGalleryItems().catch(err => {
+                console.error("❌ Failed to reload gallery after upload:", err);
+                alert("Fehler beim Neuladen der Galerie nach Upload");
+              });
+            }
+          } catch (error) {
+            console.error("Upload error:", error);
+
+            // Better error handling
+            let errorMsg = error.message;
+            if (error.message === "Failed to fetch") {
+              errorMsg = 'Backend-Server läuft nicht! Bitte "npm start" ausführen.';
+            } else if (error.message.includes("404")) {
+              errorMsg = "Upload-Endpoint nicht gefunden. API_URL überprüfen.";
+            } else if (error.message.includes("413")) {
+              errorMsg = "Datei zu groß (max. 100MB)";
+            } else if (error.message.includes("CORS")) {
+              errorMsg = "CORS-Error - Server-Konfiguration überprüfen.";
+            }
+
+            alert(`Fehler beim Hochladen von ${file.name}:\n\n${errorMsg}`);
+          }
+        }
+        uploadLoadingBar.remove();
+      }
+
+      // Add to sub-gallery storage
+      function addToSubGalleryStorage(category, imageId, fileData) {
+        const storageKey = `subgallery_${category}`;
+        let subGalleries = JSON.parse(localStorage.getItem(storageKey) || "{}");
+
+        if (!subGalleries[imageId]) {
+          subGalleries[imageId] = [];
+        }
+
+        subGalleries[imageId].push(fileData);
+        localStorage.setItem(storageKey, JSON.stringify(subGalleries));
+      }
+
+      // Reset form
+      function resetForm() {
+        document.getElementById("upload-title").value = "";
+        document.getElementById("thema-name").value = "";
+        document.getElementById("thema-tag-display").style.display = "none";
+        selectedFiles = [];
+        updatePreview();
+      }
+
+      // Sort subcategories based on selected order
+      function sortSubcategories(subList) {
+        const sortOrder = sortOrderSubcategories;
+        
+        return subList.sort((a, b) => {
+          const rawA = a.subId;
+          const rawB = b.subId;
+
+          // Bereinigte Namen für A-Z Vergleich (entfernt "1. ", "10. " etc.)
+          const cleanA = rawA.replace(/^\d+\.\s*/, "").trim().toLowerCase();
+          const cleanB = rawB.replace(/^\d+\.\s*/, "").trim().toLowerCase();
+
+          if (sortOrder === "aToZ") {
+            return cleanA.localeCompare(cleanB);
+          } else if (sortOrder === "zToA") {
+            return cleanB.localeCompare(cleanA);
+          } else if (sortOrder === "oldest") {
+            // Numerisch aufsteigend (1, 2, 10)
+            return rawA.localeCompare(rawB, undefined, { numeric: true, sensitivity: 'base' });
+          } else if (sortOrder === "newest") {
+            // Numerisch absteigend (10, 2, 1)
+            return rawB.localeCompare(rawA, undefined, { numeric: true, sensitivity: 'base' });
+          }
+          return 0;
+        });
+      }
+
+      // Load and display gallery items - NEW: Fetch from backend API
+      async function loadGalleryItems() {
+        if (!currentCategory) {
+          console.warn("⚠️ loadGalleryItems called but currentCategory is null");
+          return;
+        }
+
+        // Erstelle eine eindeutige ID für diese Load-Operation
+        const loadId = ++lastGalleryLoadId;
+        console.log(`🔄 Starting gallery load ${loadId} for ${currentCategory.key}`);
+
+        const deletedPlaceholdersKey = `deleted_placeholders_${currentCategory.key}`;
+        const deletedPlaceholders = JSON.parse(localStorage.getItem(deletedPlaceholdersKey) || "[]");
+
+        const container = document.getElementById("current-gallery-items");
+        if (!container) {
+          console.error("❌ Container not found!");
+          return;
+        }
+        
+        container.innerHTML = "";
+
+        // Fetch gallery data from server
+        let galleryData = { images: [], videos: [], subgalleries: {} };
+        try {
+          const response = await fetch(window.APP_CONFIG.getEndpoint(`/api/gallery/${currentCategory.key}`));
+          
+          // Ignoriere diese Response, wenn eine neuere Load-Operation gestartet wurde
+          if (loadId !== lastGalleryLoadId) {
+            console.log(`⏭️ Ignoring gallery load ${loadId} (newer load ${lastGalleryLoadId} is active)`);
+            return;
+          }
+          
+          if (response.ok) {
+            galleryData = await response.json();
+            // Store globally for modal access
+            window.currentGalleryData = galleryData;
+            console.log(`✅ Gallery data loaded for ${currentCategory.key}`);
+          } else {
+            console.error(`❌ API returned status ${response.status}`);
+            throw new Error(`HTTP Error: ${response.status}`);
+          }
+        } catch (error) {
+          console.error("❌ Error loading gallery items:", error);
+          // Ignoriere auch bei Errors, wenn eine neuere Operation läuft
+          if (loadId !== lastGalleryLoadId) return;
+          
+          // Zeige Error-Nachricht
+          container.innerHTML = `<div class="empty-state" style="color: #ff6b6b;">❌ Fehler beim Laden der Galerie: ${error.message}</div>`;
+          return;
+        }
+        
+        // Letzte Überprüfung vor dem Rendern
+        if (loadId !== lastGalleryLoadId) {
+          console.log(`⏭️ Aborting render for load ${loadId} (newer load ${lastGalleryLoadId} is active)`);
+          return;
+        }
+
+        const { images, videos, subgalleries } = galleryData;
+
+        // 1. Kategorien trennen
+        const placeholders = getPlaceholderImages(currentCategory.key).filter((p) => !deletedPlaceholders.includes(p.subId));
+        
+        const photos = [];
+        (images || []).forEach((item, index) => {
+          photos.push({ ...item, itemType: "regular", fileType: "image", index });
+        });
+        
+        const videoList = [];
+        (videos || []).forEach((item, index) => {
+          videoList.push({ ...item, itemType: "regular", fileType: "video", index });
+        });
+
+        let subList = [];
+        Object.entries(subgalleries || {}).forEach(([subId, items]) => {
+          if (items.length > 0) {
+            subList.push({ 
+              ...items[0], 
+              itemType: "subcategory", 
+              subId, 
+              index: 0, 
+              subGalleryLength: items.length,
+              allSubcategoryItems: items
+            });
+          }
+        });
+
+        if (photos.length === 0 && videoList.length === 0 && subList.length === 0 && placeholders.length === 0) {
+          container.innerHTML = '<div class="empty-state">Noch keine Medien hochgeladen. Laden Sie Ihr erstes Medium oben hoch!</div>';
+          container.classList.add("gallery-items-grid");
+          return;
+        }
+
+        // Layout für getrennte Sektionen anpassen
+        container.classList.remove("gallery-items-grid");
+        container.style.display = "flex";
+        container.style.flexDirection = "column";
+        container.style.gap = "2rem";
+
+        // 2. Hilfsfunktion zum Rendern einer Kategorie
+        const renderSection = (title, icon, items) => {
+          if (items.length === 0) return;
+          
+          const sectionDiv = document.createElement("div");
+          
+          const titleEl = document.createElement("h4");
+          titleEl.style.cssText = "color:white; font-size:1.2rem; font-weight:700; margin-bottom:1rem; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 0.5rem;";
+          titleEl.innerHTML = `<i class="${icon}" style="margin-right:0.5rem;"></i> ${title} <span style="opacity:0.6; font-size:0.9rem;">(${items.length})</span>`;
+          sectionDiv.appendChild(titleEl);
+          
+          const grid = document.createElement("div");
+          grid.className = "gallery-items-grid";
+
+          items.forEach((item) => {
+            const itemDiv = document.createElement("div");
+            itemDiv.className = "gallery-item";
+
+            let meta = "Einzelbild";
+            if (item.itemType === "subcategory") {
+              meta = `Unterordner: ${item.subId} (${item.subGalleryLength} Medien)`;
+            } else if (item.itemType === "placeholder") {
+              meta = `Platzhalter (${item.subId})`;
+            } else if (item.fileType === "video") {
+              meta = "Video";
+            }
+
+            // Löschen-Button nur anzeigen, wenn:
+            // - Es KEIN Ordner ist
+            // Bei Ordnern wird nur "Alle löschen" gezeigt
+            let deleteBtn = "";
+            if (item.itemType !== "subcategory") {
+              deleteBtn = `<button class=\"gallery-item-delete\" onclick='deleteGalleryItem(${JSON.stringify(item).replace(/'/g, "&#39;")})'>
+                    <i class=\"fas fa-trash\"></i> Löschen
+                  </button>`;
+            }
+
+            let deleteAllBtn = "";
+            if (item.itemType === "subcategory") {
+              deleteAllBtn = `<button class=\"gallery-item-delete\" style=\"left:0.5rem;right:auto;background:rgba(255,193,7,0.9);color:black;\" onclick='deleteAllSubcategoryGalleryItems(\"${item.subId}\")'>
+                  <i class=\"fas fa-trash-alt\"></i> Alle löschen
+                </button>`;
+            }
+
+            const displayTitle = item.title && item.title.trim() ? item.title : item.name || "Untitled";
+            const rawSrc = item.path || item.data || item.src;
+            const imageSrc = typeof window.resolveMediaUrl === "function" ? window.resolveMediaUrl(rawSrc) : rawSrc;
+            const isVideo = item.fileType === "video" || (item.path && item.path.match(/\.(mp4|webm|mov)$/i));
+            
+            let mediaElement;
+            if (isVideo) {
+              mediaElement = `<video src="${imageSrc}" controls playsinline preload="metadata" style="width:100%; height:200px; object-fit:cover; background:black;"></video>`;
+            } else {
+              mediaElement = `<img src="${imageSrc}" alt="${displayTitle}" style="width:100%; height:200px; object-fit:cover;">`;
+            }
+            
+            itemDiv.innerHTML = `
+              ${mediaElement}
+              <div class="gallery-item-info">
+                <div class="gallery-item-title">${displayTitle}</div>
+                <div class="gallery-item-meta">${meta}</div>
+              </div>
+              ${deleteBtn}
+              ${deleteAllBtn}
+            `;
+            
+            if (item.itemType === "subcategory") {
+              itemDiv.style.cursor = "pointer";
+              itemDiv.addEventListener("click", (e) => {
+                if (!e.target.closest(".gallery-item-delete") && !e.target.closest(".gallery-item-delete-all")) {
+                  openSubcategoryGallery(item.subId, item.allSubcategoryItems, 0);
+                }
+              });
+            }
+            grid.appendChild(itemDiv);
+          });
+          
+          sectionDiv.appendChild(grid);
+          container.appendChild(sectionDiv);
+        };
+
+        // 3. Sortierung für Unterordner/Themen
+        subList = sortSubcategories(subList);
+        
+        // Sortier-Dropdown UI hinzufügen
+        if (subList.length > 0) {
+          const sortDivWrapper = document.createElement("div");
+          sortDivWrapper.style.cssText = "margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem;";
+          
+          const sortLabel = document.createElement("label");
+          sortLabel.textContent = "Sortierung: ";
+          sortLabel.style.cssText = "color: white; font-weight: 600;";
+          
+          const sortSelect = document.createElement("select");
+          sortSelect.id = "subcategory-sort-select";
+          sortSelect.style.cssText = `
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 0.4rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+          `;
+          
+          const options = [
+            { value: "newest", label: "📅 Neuste zuerst" },
+            { value: "oldest", label: "📅 Älteste zuerst" },
+            { value: "aToZ", label: "🔤 A → Z" },
+            { value: "zToA", label: "🔤 Z → A" }
+          ];
+          
+          options.forEach(opt => {
+            const option = document.createElement("option");
+            option.value = opt.value;
+            option.textContent = opt.label;
+            option.style.backgroundColor = "white"; // Dunkler Hintergrund für die Liste
+            option.style.color = "black";            // Weiße Schrift für die Liste
+            if (opt.value === sortOrderSubcategories) {
+              option.selected = true;
+            }
+            sortSelect.appendChild(option);
+          });
+          
+          sortSelect.addEventListener("change", (e) => {
+            sortOrderSubcategories = e.target.value;
+            localStorage.setItem("sortOrderSubcategories", sortOrderSubcategories);
+            loadGalleryItems();
+          });
+          
+          sortSelect.addEventListener("mouseover", () => {
+            sortSelect.style.background = "rgba(255, 255, 255, 0.4) !important";
+            sortSelect.style.borderColor = "rgba(255, 255, 255, 0.5)";
+          });
+          sortSelect.addEventListener("mouseout", () => {
+            sortSelect.style.background = "rgba(255, 255, 255, 0.1) !important";
+            sortSelect.style.borderColor = "rgba(255, 255, 255, 0.3)";
+          });
+          
+          sortDivWrapper.appendChild(sortLabel);
+          sortDivWrapper.appendChild(sortSelect);
+          container.appendChild(sortDivWrapper);
+        }
+        
+        // 3. Sektionen in der gewünschten Reihenfolge ausgeben
+        renderSection("Unterordner / Themen", "fas fa-folder-open", subList);
+        renderSection("Videos", "fas fa-video", videoList);
+        renderSection("Platzhalter (Standard)", "fas fa-thumbtack", placeholders);
+        
+        // 4. "Wiederherstellen"-Button für gelöschte Platzhalter anzeigen
+        const allPlaceholders = getPlaceholderImages(currentCategory.key);
+        const restorable = allPlaceholders.filter((p) => deletedPlaceholders.includes(p.subId));
+        
+        if (restorable.length > 0) {
+          const restoreButtonDiv = document.createElement("div");
+          restoreButtonDiv.style.cssText = "margin-top: 1rem; padding: 1rem; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 0.5rem;";
+          restoreButtonDiv.innerHTML = `
+            <p style="color: rgba(255,255,255,0.7); margin-bottom: 0.5rem;">
+              <i class="fas fa-info-circle" style="margin-right: 0.5rem;"></i>
+              ${restorable.length} gelöschter Platzhalter verfügbar
+            </p>
+            <button onclick="openRestorePlaceholdersModal('${currentCategory.key}')" style="
+              padding: 0.75rem 1.5rem;
+              background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+              border: none;
+              border-radius: 0.5rem;
+              color: white;
+              font-weight: 600;
+              cursor: pointer;
+              transition: all 0.3s ease;
+            " onmouseover="this.style.background = 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)'" onmouseout="this.style.background = 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)'">
+              <i class="fas fa-undo" style="margin-right: 0.5rem;"></i> Wiederherstellen
+            </button>
+          `;
+          container.appendChild(restoreButtonDiv);
+        }
+      }
+
+      // Open subcategory gallery modal
+      function openSubcategoryGallery(subId, items, startIndex = 0) {
+        if (!items || items.length === 0) return;
+        
+        // Sortiere Fotos/Videos im Unterordner nach ausgewählter Sortierungsreihenfolge
+        const sortOrder = sortOrderSubcategories;
+        items.sort((a, b) => {
+          const nameA = (a.title || a.name || "").toLowerCase();
+          const nameB = (b.title || b.name || "").toLowerCase();
+          
+          if (sortOrder === "aToZ") {
+            return nameA.localeCompare(nameB);
+          } else if (sortOrder === "zToA") {
+            return nameB.localeCompare(nameA);
+          } else if (sortOrder === "newest") {
+            // Neueste zuerst (höhere Index-Werte am Ende des Arrays)
+            return 0; // Arrays sind bereits in Upload-Reihenfolge
+          } else if (sortOrder === "oldest") {
+            // Älteste zuerst
+            return 0; // Arrays sind bereits in Upload-Reihenfolge
+          }
+          return 0;
+        });
+        
+        // Create modal
+        const modal = document.createElement("div");
+        modal.id = "subcategory-modal";
+        modal.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.9);
+          z-index: 10000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        `;
+        
+        // Create modal content
+        modal.innerHTML = `
+          <div style="position: relative; max-width: 90vw; max-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <button onclick="closeSubcategoryGallery()" style="
+              position: absolute;
+              top: -40px;
+              right: 0;
+              background: none;
+              border: none;
+              color: white;
+              font-size: 2rem;
+              cursor: pointer;
+              z-index: 10001;
+            ">&times;</button>
+            
+            <!-- Left Arrow -->
+            <button onclick="navigateSubcategory(-1)" style="
+              position: absolute;
+              left: 0;
+              top: 50%;
+              transform: translateY(-50%);
+              background: none;
+              border: none;
+              color: white;
+              font-size: 3rem;
+              cursor: pointer;
+              padding: 1rem 1.5rem;
+              transition: all 0.3s ease;
+              z-index: 10001;
+            " onmouseover="this.style.color = '#ffeb3b'" onmouseout="this.style.color = 'white'">&#8249;</button>
+            
+            <!-- Image/Video Container -->
+            <div id="subcategory-content" style="max-width: 80vw; max-height: 80vh;">
+              <!-- Content will be loaded here -->
+            </div>
+            
+            <!-- Right Arrow -->
+            <button onclick="navigateSubcategory(1)" style="
+              position: absolute;
+              right: 0;
+              top: 50%;
+              transform: translateY(-50%);
+              background: none;
+              border: none;
+              color: white;
+              font-size: 3rem;
+              cursor: pointer;
+              padding: 1rem 1.5rem;
+              transition: all 0.3s ease;
+              z-index: 10001;
+            " onmouseover="this.style.color = '#ffeb3b'" onmouseout="this.style.color = 'white'">&#8250;</button>
+            
+            <!-- Counter and Delete Button -->
+            <div style="position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); text-align: center; color: white;">
+              <span id="subcategory-counter"></span>
+              <button id="subcategory-delete-btn" onclick="deleteCurrentSubcategoryImage()" style="
+                display: block;
+                margin: 0.6rem auto 0;
+                background: rgba(220,38,38,0.85);
+                border: none;
+                color: white;
+                font-size: 0.85rem;
+                font-weight: 600;
+                cursor: pointer;
+                padding: 0.4rem 1.1rem;
+                border-radius: 0.4rem;
+              "><i class="fas fa-trash"></i> Dieses Foto löschen</button>
+            </div>
+          </div>
+        `;
+        
+        document.body.appendChild(modal);
+        
+        // Store current state
+        window.currentSubcategory = { subId, index: startIndex, items };
+        
+        // Show first image
+        showSubcategoryImage(startIndex);
+        
+        // Add keyboard navigation
+        document.addEventListener("keydown", handleSubcategoryKeydown);
+      }
+      
+      function showSubcategoryImage(index) {
+        const { subId, items } = window.currentSubcategory;
+        const item = items[index];
+        const content = document.getElementById("subcategory-content");
+        const counter = document.getElementById("subcategory-counter");
+        
+        if (!item || !content) return;
+        
+        const isVideo = item.fileType === "video";
+        const rawMediaSrc = item.path || item.data || item.src;
+        const mediaSrc = typeof window.resolveMediaUrl === "function" ? window.resolveMediaUrl(rawMediaSrc) : rawMediaSrc;
+        
+        content.innerHTML = isVideo 
+          ? `<video src="${mediaSrc}" controls autoplay style="max-width: 100%; max-height: 80vh; object-fit: cover; display: block; margin: auto;"></video>`
+          : `<img src="${mediaSrc}" style="max-width: 100%; max-height: 80vh; object-fit: cover; display: block; margin: auto;">`;
+        
+        // Stelle sicher, dass der Container flexbox ist und Bilder zentriert
+        content.style.display = 'flex';
+        content.style.alignItems = 'center';
+        content.style.justifyContent = 'center';
+        
+        counter.textContent = `${index + 1} / ${items.length} - ${item.title || item.name}`;
+        
+        window.currentSubcategory.index = index;
+      }
+      
+      function navigateSubcategory(direction) {
+        const { index, items } = window.currentSubcategory;
+        const newIndex = index + direction;
+        
+        if (newIndex >= 0 && newIndex < items.length) {
+          showSubcategoryImage(newIndex);
+        }
+      }
+      
+      function handleSubcategoryKeydown(e) {
+        if (!window.currentSubcategory) return;
+        
+        if (e.key === "ArrowLeft") {
+          navigateSubcategory(-1);
+        } else if (e.key === "ArrowRight") {
+          navigateSubcategory(1);
+        } else if (e.key === "Escape") {
+          closeSubcategoryGallery();
+        }
+      }
+      
+      function closeSubcategoryGallery() {
+        const modal = document.getElementById("subcategory-modal");
+        if (modal) {
+          modal.remove();
+        }
+        document.removeEventListener("keydown", handleSubcategoryKeydown);
+        window.currentSubcategory = null;
+      }
+
+      async function deleteCurrentSubcategoryImage() {
+        const { subId, index, items } = window.currentSubcategory;
+        const item = items[index];
+        
+        // Zeige Bestätigungsmodal statt confirm()
+        const modal = document.createElement("div");
+        modal.id = "delete-subcategory-item-modal";
+        modal.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.7);
+          z-index: 10001;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        `;
+
+        modal.innerHTML = `
+          <div style="
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.95) 0%, rgba(185, 28, 28, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 400px;
+            text-align: center;
+          ">
+            <h3 style="color: white; font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">
+              <i class="fas fa-exclamation-triangle" style="margin-right: 0.5rem; color: #fbbf24;"></i>Bestätigung erforderlich
+            </h3>
+            
+            <div style="margin-bottom: 1.5rem; text-align: left;">
+              <p style="color: white; margin-bottom: 1rem; font-weight: 600;">
+                Sind Sie sicher, dass Sie die Datei löschen möchten?
+              </p>
+              <p style="color: #fecaca; margin-bottom: 0; font-size: 0.95rem;">
+                <i class="fas fa-exclamation-circle" style="margin-right: 0.5rem;"></i>
+                Diese Aktion kann nicht rückgängig gemacht werden.
+              </p>
+            </div>
+            
+            <p style="color: rgba(255,255,255,0.7); margin-bottom: 1.5rem; font-size: 0.9rem; background: rgba(0,0,0,0.2); padding: 0.75rem; border-radius: 0.5rem;">
+              <strong>${item.title || item.name || 'Unbekannt'}</strong>
+            </p>
+            
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+              <button onclick="closeDeleteSubcategoryItemModal()" style="
+                padding: 0.75rem 1.5rem;
+                background: rgba(255, 255, 255, 0.3);
+                border: none;
+                border-radius: 0.5rem;
+                color: white;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+              " onmouseover="this.style.background = 'rgba(255, 255, 255, 0.2)'" onmouseout="this.style.background = 'rgba(255, 255, 255, 0.3)'">
+                Abbrechen
+              </button>
+              <button onclick="confirmDeleteSubcategoryItem('${subId}', ${index}, '${item.name}')" style="
+                padding: 0.75rem 1.5rem;
+                background: rgba(220, 38, 38, 0.9);
+                border: none;
+                border-radius: 0.5rem;
+                color: white;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+              " onmouseover="this.style.background = 'rgba(185, 28, 28, 0.9)'" onmouseout="this.style.background = 'rgba(220, 38, 38, 0.9)'">
+                <i class="fas fa-trash" style="margin-right: 0.5rem;"></i>Löschen
+              </button>
+            </div>
+          </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        // Schließen bei Klick außerhalb
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            closeDeleteSubcategoryItemModal();
+          }
+        });
+      }
+
+      // Modal schließen
+      function closeDeleteSubcategoryItemModal() {
+        const modal = document.getElementById("delete-subcategory-item-modal");
+        if (modal) {
+          modal.remove();
+        }
+      }
+
+      // Bestätigung für Foto-Löschung in Unterordner
+      async function confirmDeleteSubcategoryItem(subId, index, itemName) {
+        closeDeleteSubcategoryItemModal();
+
+        try {
+          const response = await fetch(
+            window.APP_CONFIG.getEndpoint(`/api/upload/${currentCategory.key}/${itemName}?subcategoryId=${encodeURIComponent(subId)}`),
+            { method: "DELETE" }
+          );
+          if (!response.ok) { 
+            alert("Fehler beim Löschen"); 
+            return; 
+          }
+
+          // Hole die aktualisierten Daten
+          const { items } = window.currentSubcategory;
+          items.splice(index, 1);
+          
+          loadGalleryItems();
+
+          if (items.length === 0) {
+            closeSubcategoryGallery();
+            return;
+          }
+          
+          window.currentSubcategory.items = items;
+          showSubcategoryImage(Math.min(index, items.length - 1));
+        } catch (e) {
+          console.error(e);
+          alert("Fehler beim Löschen");
+        }
+      }
+
+      // Neuen Titel eingeben und an Server senden (für Kacheln)
+      async function editGalleryItemTitle(event, item) {
+        if (event) event.stopPropagation(); // Verhindert Klicks auf dahinterliegende Elemente
+        
+        const currentTitle = item.title || item.name;
+        const newTitle = prompt("Neuer Name für dieses Medium:", currentTitle);
+
+        if (newTitle !== null && newTitle.trim() !== "" && newTitle !== currentTitle) {
+          try {
+            const response = await fetch(window.APP_CONFIG.getEndpoint(`/api/upload/${currentCategory.key}/${item.name}`), {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ newTitle: newTitle.trim() })
+            });
+
+            if (response.ok) {
+              loadGalleryItems(); // Lädt die Galerie neu, um den neuen Namen anzuzeigen
+            } else {
+              alert("Fehler beim Aktualisieren des Namens.");
+            }
+          } catch (error) {
+            console.error("Edit error:", error);
+            alert("Fehler beim Aktualisieren des Namens.");
+          }
+        }
+      }
+
+      // Neuen Titel eingeben (für Bilder innerhalb des Unterordner-Modals)
+      async function editCurrentSubcategoryImage() {
+        const { subId, index, items } = window.currentSubcategory;
+        const item = items[index];
+        
+        const currentTitle = item.title || item.name;
+        const newTitle = prompt("Neuer Name für dieses Medium:", currentTitle);
+
+        if (newTitle !== null && newTitle.trim() !== "" && newTitle !== currentTitle) {
+          try {
+            const response = await fetch(window.APP_CONFIG.getEndpoint(`/api/upload/${currentCategory.key}/${item.name}`), {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ newTitle: newTitle.trim() })
+            });
+
+            if (response.ok) {
+              item.title = newTitle.trim();
+              showSubcategoryImage(index); // Titel im Modal sofort aktualisieren
+              loadGalleryItems(); // Auch das Grid im Hintergrund aktualisieren
+            } else {
+              alert("Fehler beim Aktualisieren.");
+            }
+          } catch (error) {
+            console.error("Edit error:", error);
+            alert("Fehler beim Aktualisieren.");
+          }
+        }
+      }
+
+      // Get placeholder images from the HTML structure
+      function getPlaceholderImages(categoryKey) {
+        const placeholders = [];
+
+        // Bodypainting placeholders (6 images)
+        if (categoryKey === "bodypainting") {
+          for (let i = 1; i <= 6; i++) {
+            placeholders.push({
+              src: "img/bodypainting/bodypainting_static.jpg",
+              title: `Bodypainting ${i}`,
+              subId: `bodypainting-${i}`,
+              itemType: "placeholder",
+            });
+          }
+        }
+
+        // Events placeholders (6 images)
+        if (categoryKey === "events") {
+          for (let i = 1; i <= 6; i++) {
+            placeholders.push({
+              src: "img/events/bg.jpg",
+              title: `Event ${i}`,
+              subId: `events-${i}`,
+              itemType: "placeholder",
+            });
+          }
+        }
+
+        // Zeichnungen placeholders (12 images)
+        if (categoryKey === "zeichnungen") {
+          for (let i = 1; i <= 12; i++) {
+            placeholders.push({
+              src: "img/zeichnungen/bg.jpg",
+              title: `Zeichnung ${i}`,
+              subId: `zeichnungen-${i}`,
+              itemType: "placeholder",
+            });
+          }
+        }
+
+        // Malerei placeholders (6 images)
+        if (categoryKey === "malerei") {
+          for (let i = 1; i <= 6; i++) {
+            placeholders.push({
+              src: "img/malerei/bg.jpg",
+              title: `Malerei ${i}`,
+              subId: `malerei-${i}`,
+              itemType: "placeholder",
+            });
+          }
+        }
+
+        // Bildhauerei placeholders (6 images)
+        if (categoryKey === "bildhauerei") {
+          for (let i = 1; i <= 6; i++) {
+            placeholders.push({
+              src: "img/bildhauerei/sculpture_static.jpg",
+              title: `Bildhauerei ${i}`,
+              subId: `bildhauerei-${i}`,
+              itemType: "placeholder",
+            });
+          }
+        }
+
+        // Sandmalerei placeholders (6 images)
+        if (categoryKey === "sandmalerei") {
+          for (let i = 1; i <= 6; i++) {
+            placeholders.push({
+              src: "img/sandmalerei/sandpainting_static.jpg",
+              title: `Sandmalerei ${i}`,
+              subId: `sandmalerei-${i}`,
+              itemType: "placeholder",
+            });
+          }
+        }
+
+        // Presse placeholders (6 images)
+        if (categoryKey === "presse") {
+          for (let i = 1; i <= 6; i++) {
+            placeholders.push({
+              src: "img/presse/bg.jpg",
+              title: `Presse ${i}`,
+              subId: `presse-${i}`,
+              itemType: "placeholder",
+            });
+          }
+        }
+
+        return placeholders;
+      }
+
+      // Modal für gelöschte Platzhalter anzeigen
+      function openRestorePlaceholdersModal(categoryKey) {
+        const deletedPlaceholdersKey = `deleted_placeholders_${categoryKey}`;
+        const deletedPlaceholders = JSON.parse(localStorage.getItem(deletedPlaceholdersKey) || "[]");
+        
+        if (deletedPlaceholders.length === 0) {
+          alert("Keine gelöschten Platzhalter vorhanden.");
+          return;
+        }
+
+        // Modal erstellen
+        const modal = document.createElement("div");
+        modal.id = "restore-placeholders-modal";
+        modal.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.7);
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        `;
+
+        const allPlaceholders = getPlaceholderImages(categoryKey);
+        const restorable = allPlaceholders.filter((p) => deletedPlaceholders.includes(p.subId));
+
+        let checkboxesHTML = restorable.map((p) => `
+          <label style="display: flex; align-items: center; margin-bottom: 0.75rem; cursor: pointer; padding: 0.5rem; background: rgba(255,255,255,0.05); border-radius: 0.25rem;">
+            <input type="checkbox" class="restore-checkbox" value="${p.subId}" checked style="margin-right: 0.75rem; cursor: pointer; width: 18px; height: 18px;">
+            <span style="color: white; flex: 1;">${p.title || p.subId}</span>
+          </label>
+        `).join("");
+
+        modal.innerHTML = `
+          <div style="
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+          ">
+            <h3 style="color: white; font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">
+              <i class="fas fa-undo" style="margin-right: 0.5rem;"></i>Platzhalter wiederherstellen
+            </h3>
+            
+            <div style="margin-bottom: 1.5rem; color: rgba(255,255,255,0.8);">
+              Wählen Sie die Platzhalter aus, die Sie wiederherstellen möchten:
+            </div>
+            
+            <div style="margin-bottom: 1.5rem; max-height: 300px; overflow-y: auto;">
+              ${checkboxesHTML}
+            </div>
+            
+            <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+              <button onclick="closeRestoreModal()" style="
+                padding: 0.75rem 1.5rem;
+                background: rgba(255, 255, 255, 0.3);
+                border: none;
+                border-radius: 0.5rem;
+                color: white;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+              " onmouseover="this.style.background = 'rgba(255, 255, 255, 0.2)'" onmouseout="this.style.background = 'rgba(255, 255, 255, 0.3)'">
+                Abbrechen
+              </button>
+              <button onclick="restoreSelectedPlaceholders('${categoryKey}')" style="
+                padding: 0.75rem 1.5rem;
+                background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+                border: none;
+                border-radius: 0.5rem;
+                color: white;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+              " onmouseover="this.style.background = 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)'" onmouseout="this.style.background = 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)'">
+                <i class="fas fa-check" style="margin-right: 0.5rem;"></i>Wiederherstellen
+              </button>
+            </div>
+          </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        // Schließen bei Klick außerhalb
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            closeRestoreModal();
+          }
+        });
+      }
+
+      // Modal schließen
+      function closeRestoreModal() {
+        const modal = document.getElementById("restore-placeholders-modal");
+        if (modal) {
+          modal.remove();
+        }
+      }
+
+      // Bestätigungsmodal für Löschen anzeigen
+      function showDeleteConfirmationModal(item, onConfirm) {
+        const modal = document.createElement("div");
+        modal.id = "delete-confirmation-modal";
+        modal.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.7);
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        `;
+
+        modal.innerHTML = `
+          <div style="
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.95) 0%, rgba(185, 28, 28, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 400px;
+            text-align: center;
+          ">
+            <h3 style="color: white; font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">
+              <i class="fas fa-exclamation-triangle" style="margin-right: 0.5rem; color: #fbbf24;"></i>Bestätigung erforderlich
+            </h3>
+            
+            <div style="margin-bottom: 1.5rem; text-align: left;">
+              <p style="color: white; margin-bottom: 1rem; font-weight: 600;">
+                Sind Sie sicher, dass Sie die Datei löschen möchten?
+              </p>
+              <p style="color: #fecaca; margin-bottom: 0; font-size: 0.95rem;">
+                <i class="fas fa-exclamation-circle" style="margin-right: 0.5rem;"></i>
+                Diese Aktion kann nicht rückgängig gemacht werden.
+              </p>
+            </div>
+            
+            <p style="color: rgba(255,255,255,0.7); margin-bottom: 1.5rem; font-size: 0.9rem; background: rgba(0,0,0,0.2); padding: 0.75rem; border-radius: 0.5rem; word-break: break-word; overflow-wrap: break-word;">
+              <strong style="display: block; word-break: break-word;">${item.title || item.name || 'Unbekannt'}</strong>
+            </p>
+            
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+              <button onclick="closeDeleteConfirmationModal()" style="
+                padding: 0.75rem 1.5rem;
+                background: rgba(255, 255, 255, 0.3);
+                border: none;
+                border-radius: 0.5rem;
+                color: white;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+              " onmouseover="this.style.background = 'rgba(255, 255, 255, 0.2)'" onmouseout="this.style.background = 'rgba(255, 255, 255, 0.3)'">
+                Abbrechen
+              </button>
+              <button onclick="confirmDeleteItem()" style="
+                padding: 0.75rem 1.5rem;
+                background: rgba(220, 38, 38, 0.9);
+                border: none;
+                border-radius: 0.5rem;
+                color: white;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+              " onmouseover="this.style.background = 'rgba(185, 28, 28, 0.9)'" onmouseout="this.style.background = 'rgba(220, 38, 38, 0.9)'">
+                <i class="fas fa-trash" style="margin-right: 0.5rem;"></i>Löschen
+              </button>
+            </div>
+          </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        // Speichere die Callback-Funktion
+        window.deleteConfirmCallback = onConfirm;
+
+        // Schließen bei Klick außerhalb
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            closeDeleteConfirmationModal();
+          }
+        });
+      }
+
+      // Modal schließen
+      function closeDeleteConfirmationModal() {
+        const modal = document.getElementById("delete-confirmation-modal");
+        if (modal) {
+          modal.remove();
+        }
+        window.deleteConfirmCallback = null;
+      }
+
+      // Löschen bestätigen
+      function confirmDeleteItem() {
+        if (window.deleteConfirmCallback) {
+          window.deleteConfirmCallback();
+        }
+        closeDeleteConfirmationModal();
+      }
+
+      // Ausgewählte Platzhalter wiederherstellen
+      function restoreSelectedPlaceholders(categoryKey) {
+        const checkboxes = document.querySelectorAll(".restore-checkbox:checked");
+        if (checkboxes.length === 0) {
+          alert("Bitte wählen Sie mindestens einen Platzhalter aus.");
+          return;
+        }
+
+        const deletedPlaceholdersKey = `deleted_placeholders_${categoryKey}`;
+        const deletedPlaceholders = JSON.parse(localStorage.getItem(deletedPlaceholdersKey) || "[]");
+        
+        // Entferne die ausgewählten Platzhalter aus der gelöschten Liste
+        checkboxes.forEach((checkbox) => {
+          const subId = checkbox.value;
+          const index = deletedPlaceholders.indexOf(subId);
+          if (index > -1) {
+            deletedPlaceholders.splice(index, 1);
+          }
+        });
+
+        // Speichere die aktualisierte Liste
+        localStorage.setItem(deletedPlaceholdersKey, JSON.stringify(deletedPlaceholders));
+
+        closeRestoreModal();
+        loadGalleryItems();
+        
+        alert(`${checkboxes.length} Platzhalter wurde/n erfolgreich wiederhergestellt!`);
+      }
+
+      // Delete gallery item
+      // Delete gallery item - NEW: Delete from backend server
+      async function deleteGalleryItem(item) {
+        // Zeige besseres Bestätigungsmodal statt confirm()
+        showDeleteConfirmationModal(item, async () => {
+          if (item.itemType === "regular") {
+            try {
+              const response = await fetch(window.APP_CONFIG.getEndpoint(`/api/upload/${currentCategory.key}/${item.name}`), {
+                method: "DELETE",
+              });
+              if (response.ok) {
+                await loadGalleryItems();
+              } else {
+                alert("Fehler beim Löschen");
+              }
+            } catch (error) {
+              console.error("Delete error:", error);
+              alert("Fehler beim Löschen");
+            }
+          } else if (item.itemType === "subcategory") {
+            try {
+              const response = await fetch(window.APP_CONFIG.getEndpoint(`/api/upload/${currentCategory.key}/${item.name}?subcategoryId=${item.subId}`), {
+                method: "DELETE",
+              });
+              if (response.ok) {
+                await loadGalleryItems();
+              } else {
+                alert("Fehler beim Löschen");
+              }
+            } catch (error) {
+              console.error("Delete error:", error);
+              alert("Fehler beim Löschen");
+            }
+          } else if (item.itemType === "placeholder" && item.subId) {
+            // For placeholders, we add their ID to a "deleted" list.
+            const deletedPlaceholdersKey = `deleted_placeholders_${currentCategory.key}`;
+            const deletedPlaceholders = JSON.parse(localStorage.getItem(deletedPlaceholdersKey) || "[]");
+            deletedPlaceholders.push(item.subId);
+            localStorage.setItem(deletedPlaceholdersKey, JSON.stringify(deletedPlaceholders));
+            await loadGalleryItems();
+          }
+        });
+      }
+
+      // Delete all images in a subcategory group - NEW: Delete from backend server
+      async function deleteAllSubcategoryGalleryItems(subId) {
+        // Zeige Bestätigungsmodal
+        const modal = document.createElement("div");
+        modal.id = "delete-all-subcategory-modal";
+        modal.style.cssText = `
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0, 0, 0, 0.7);
+          z-index: 9999;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        `;
+
+        modal.innerHTML = `
+          <div style="
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.95) 0%, rgba(185, 28, 28, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 400px;
+            text-align: center;
+          ">
+            <h3 style="color: white; font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">
+              <i class="fas fa-exclamation-triangle" style="margin-right: 0.5rem; color: #fbbf24;"></i>Bestätigung erforderlich
+            </h3>
+            
+            <div style="margin-bottom: 1.5rem; text-align: left;">
+              <p style="color: white; margin-bottom: 1rem; font-weight: 600;">
+                Sind Sie sicher, dass Sie ALLE Fotos dieser Unterkategorie löschen möchten?
+              </p>
+              <p style="color: #fecaca; margin-bottom: 0; font-size: 0.95rem;">
+                <i class="fas fa-exclamation-circle" style="margin-right: 0.5rem;"></i>
+                Diese Aktion kann nicht rückgängig gemacht werden.
+              </p>
+            </div>
+            
+            <p style="color: rgba(255,255,255,0.7); margin-bottom: 1.5rem; font-size: 0.9rem; background: rgba(0,0,0,0.2); padding: 0.75rem; border-radius: 0.5rem;">
+              <strong>Unterordner: ${subId}</strong>
+            </p>
+            
+            <div style="display: flex; gap: 1rem; justify-content: center;">
+              <button onclick="closeDeleteAllModal()" style="
+                padding: 0.75rem 1.5rem;
+                background: rgba(255, 255, 255, 0.3);
+                border: none;
+                border-radius: 0.5rem;
+                color: white;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+              " onmouseover="this.style.background = 'rgba(255, 255, 255, 0.2)'" onmouseout="this.style.background = 'rgba(255, 255, 255, 0.3)'">
+                Abbrechen
+              </button>
+              <button onclick="confirmDeleteAllSubcategory('${subId}')" style="
+                padding: 0.75rem 1.5rem;
+                background: rgba(220, 38, 38, 0.9);
+                border: none;
+                border-radius: 0.5rem;
+                color: white;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+              " onmouseover="this.style.background = 'rgba(185, 28, 28, 0.9)'" onmouseout="this.style.background = 'rgba(220, 38, 38, 0.9)'">
+                <i class="fas fa-trash" style="margin-right: 0.5rem;"></i>Alle Löschen
+              </button>
+            </div>
+          </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        // Schließen bei Klick außerhalb
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            closeDeleteAllModal();
+          }
+        });
+      }
+
+      // Modal schließen
+      function closeDeleteAllModal() {
+        const modal = document.getElementById("delete-all-subcategory-modal");
+        if (modal) {
+          modal.remove();
+        }
+      }
+
+      // Bestätigung für "Alle löschen"
+      async function confirmDeleteAllSubcategory(subId) {
+        closeDeleteAllModal();
+
+        try {
+          const response = await fetch(window.APP_CONFIG.getEndpoint(`/api/gallery/${currentCategory.key}`));
+          if (!response.ok) return;
+
+          const galleryData = await response.json();
+          const items = galleryData.subgalleries[subId] || [];
+
+          for (const item of items) {
+            await fetch(window.APP_CONFIG.getEndpoint(`/api/upload/${currentCategory.key}/${item.name}?subcategoryId=${subId}`), {
+              method: "DELETE",
+            });
+          }
+
+          loadGalleryItems();
+        } catch (error) {
+          console.error("Delete error:", error);
+          alert("Fehler beim Löschen");
+        }
+      }
+
+      // Initialize on page load
+      init();
+    </script>
+  </body>
+</html>

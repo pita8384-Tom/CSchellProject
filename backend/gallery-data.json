@@ -1,0 +1,108 @@
+{
+  "bodypainting": {
+    "images": [
+      {
+        "id": 1779828180050,
+        "name": "1779828180046-996419322.jpg",
+        "originalName": "bodypainting1.jpg",
+        "path": "/backend/img/bodypainting/1779828180046-996419322.jpg",
+        "title": "Selbstbemalung",
+        "type": "image/jpeg",
+        "fileType": "image",
+        "size": 75571,
+        "uploadedAt": "2026-05-26T20:43:00.050Z"
+      }
+    ],
+    "videos": [],
+    "subgalleries": {}
+  },
+  "zeichnungen": {
+    "images": [
+      {
+        "id": 1773227092884,
+        "name": "1773227092880-244255982.jpg",
+        "originalName": "1528489356-1.jpg",
+        "path": "/backend/img/zeichnungen/1773227092880-244255982.jpg",
+        "title": "TestFoto",
+        "type": "image/jpeg",
+        "fileType": "image",
+        "size": 63260,
+        "uploadedAt": "2026-03-11T11:04:52.884Z"
+      },
+      {
+        "id": 1776251342905,
+        "name": "1776251342833-50685491.png",
+        "originalName": "Gemini_Generated_Image_ruj50bruj50bruj5.png",
+        "path": "/backend/img/zeichnungen/1776251342833-50685491.png",
+        "title": "kkkkk",
+        "type": "image/png",
+        "fileType": "image",
+        "size": 5300896,
+        "uploadedAt": "2026-04-15T11:09:02.905Z"
+      }
+    ],
+    "videos": [],
+    "subgalleries": {}
+  },
+  "events": {
+    "images": [],
+    "videos": [],
+    "subgalleries": {}
+  },
+  "malerei": {
+    "images": [],
+    "videos": [],
+    "subgalleries": {}
+  },
+  "bildhauerei": {
+    "images": [],
+    "videos": [],
+    "subgalleries": {
+      "Die Betende, Naturgrösse": [
+        {
+          "id": 1778155643689,
+          "name": "1778155643682-44532353.jpg",
+          "originalName": "01.jpg",
+          "path": "/backend/img/bildhauerei/1778155643682-44532353.jpg",
+          "title": "01. Die Betende, Naturgrösse",
+          "type": "image/jpeg",
+          "fileType": "image",
+          "size": 61550,
+          "uploadedAt": "2026-05-07T12:07:23.689Z"
+        },
+        {
+          "id": 1778155643702,
+          "name": "1778155643699-936492752.jpg",
+          "originalName": "02.jpg",
+          "path": "/backend/img/bildhauerei/1778155643699-936492752.jpg",
+          "title": "02. Die Betende, Naturgrösse",
+          "type": "image/jpeg",
+          "fileType": "image",
+          "size": 40184,
+          "uploadedAt": "2026-05-07T12:07:23.702Z"
+        },
+        {
+          "id": 1778155643714,
+          "name": "1778155643712-69780345.jpg",
+          "originalName": "03.jpg",
+          "path": "/backend/img/bildhauerei/1778155643712-69780345.jpg",
+          "title": "03. Die Betende, Naturgrösse",
+          "type": "image/jpeg",
+          "fileType": "image",
+          "size": 73810,
+          "uploadedAt": "2026-05-07T12:07:23.714Z"
+        }
+      ]
+    }
+  },
+  "sandmalerei": {
+    "images": [],
+    "videos": [],
+    "subgalleries": {}
+  },
+  "presse": {
+    "images": [],
+    "videos": [],
+    "subgalleries": {}
+  }
+}

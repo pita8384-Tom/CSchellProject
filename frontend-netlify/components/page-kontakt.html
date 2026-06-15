@@ -1,0 +1,120 @@
+    <!-- Page 2: Kontakt -->
+    <div class="flex flex-col w-full page bg-9" id="page-2" style="height:100vh; overflow:hidden; align-items:flex-start;">
+      <div class="flex-1 w-full p-4 pt-24 content sm:pt-28 sm:p-6 md:pt-32 md:p-8 lg:pt-36 lg:p-12" id="page-2-content" style="overflow-y:auto; height:100%; box-sizing:border-box; scrollbar-width:none; -ms-overflow-style:none;">
+        <div class="w-full max-w-4xl mx-auto">
+          <h2 class="mb-3 text-3xl font-bold text-center sm:text-4xl md:text-5xl lg:text-6xl" data-i18n="kontakt.heading">Kontakt</h2>
+          <p class="mb-10 text-base text-center sm:text-lg md:text-xl text-white/70" data-i18n="kontakt.subtitle">Schreiben Sie mir eine Nachricht</p>
+          <div class="w-full max-w-2xl mx-auto">
+            <!-- Direktes E-Mail Formular -->
+            <form id="kontakt-form" class="space-y-5">
+              <div class="flex flex-col" style="gap:8px">
+                <label class="pl-1 text-sm font-medium text-white/60" style="padding-top:10px">Name</label>
+                <input
+                  id="kontakt-name"
+                  type="text"
+                  name="name"
+                  placeholder="Ihr Name"
+                  required
+                  
+                  style="color:#fff; caret-color:#fff; padding: 14px 20px; border-radius: 5px; border: 1px solid rgba(255,255,255,0.2); background-color: black;"
+                />
+              </div>
+              <div class="flex flex-col" style="gap:5px">
+                <label class="pl-1 text-sm font-medium text-white/60" style="padding-top:10px">E-Mail</label>
+                <input
+                  id="kontakt-email"
+                  type="email"
+                  name="email"
+                  placeholder="Ihre@email.at"
+                  required
+                  style="color:#fff; caret-color:#fff; padding: 14px 20px; border-radius: 5px; border: 1px solid rgba(255,255,255,0.2); background-color: black;"
+
+                />
+              </div>
+              <div class="flex flex-col" style="gap:5px">
+                <label class="pl-1 text-sm font-medium text-white/60" style="padding-top:10px">Nachricht</label>
+                <textarea
+                  id="kontakt-message"
+                  name="message"
+                  placeholder="Ihre Nachricht..."
+                  rows="6"
+                  required
+                 
+                  style="color:#fff; background:black; caret-color:#fff; border-radius: 5px; border: 1px solid rgba(255,255,255,0.2); padding: 10px;"
+                ></textarea>
+              </div>
+
+              <input type="hidden" name="_subject" value="Neue Nachricht von cschell.art" />
+              <div class="hidden" aria-hidden="true">
+                <label>Bitte nicht ausfüllen
+                  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+                </label>
+              </div>
+
+              <button id="kontakt-submit" type="submit"
+                class="flex items-center justify-center w-full gap-2 text-base font-semibold text-white transition-all border bg-white/30 backdrop-blur-sm hover:bg-white/40 border-white/20"
+                style="padding-top:6px; padding-bottom:6px; border-radius:5px; margin-top:2.5rem;">
+                <i class="fas fa-paper-plane"></i>
+                <span data-i18n="kontakt.send">Nachricht senden</span>
+              </button>
+              <p id="kontakt-status" class="min-h-[1.5rem] text-center text-sm text-white/90"></p>
+            </form>
+          </div>
+
+          <!-- Impressum Section -->
+          <div class="pt-10 border-t border-white/30">
+            <div class="max-w-4xl px-4 mx-auto sm:px-8 md:px-12 lg:px-16">
+              <div class="grid items-start grid-cols-2 gap-8 md:grid-cols-2">
+                <!-- Kontaktinformationen -->
+                <div class="text-left">
+                  <h3 class="mb-6 pt-8 text-2xl font-semibold" data-i18n="kontakt.impressum">Impressum</h3>
+                  <div class="space-y-5">
+                    <div class="space-y-1">
+                      <p class="text-lg font-semibold" style="margin:0">Caroline Schell</p>
+                      <p class="text-white/80" style="margin:0">Czerningasse 13/4</p>
+                      <p class="text-white/80" style="margin:0">A-1020 Wien</p>
+                    </div>
+                    <div class="space-y-2">
+                      <p class="text-lg font-semibold" style="margin:0">Kontakt</p>
+                      <p style="margin:0"><i class="mr-2 fas fa-phone text-white/60"></i><a href="tel:+436767939070" class="hover:underline text-white/80">+43 676 79 39070</a></p>
+                      <p style="margin:0"><i class="mr-2 fas fa-envelope text-white/60"></i><a href="mailto:contact@cschell.art" class="hover:underline text-white/80">contact@cschell.art</a></p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Social Media Buttons -->
+                <div class="text-left">
+                  <h3 class="mb-6 pt-8 text-2xl font-semibold">Social</h3>
+                  <div class="grid grid-cols-2 gap-3">
+                    <a href="#" target="_blank"
+                      class="flex h-11 items-center justify-start gap-3 bg-white/15 border border-white/20 text-sm backdrop-blur-sm transition-all hover:bg-[#1877F2]" style="border-radius:5px; padding: 2px 0 2px 3px;">
+                      <i class="fab fa-facebook"></i> <span>Facebook</span>
+                    </a>
+                    <a href="#" target="_blank"
+                      class="flex h-11 items-center justify-start gap-3 bg-white/15 border border-white/20 text-sm backdrop-blur-sm transition-all hover:bg-[#FF7A00]" style="border-radius:5px; padding: 2px 0 2px 3px;">
+                      <i class="fas fa-th"></i> <span>Hive</span>
+                    </a>
+                    <a href="#" target="_blank"
+                      class="flex h-11 items-center justify-start gap-3 bg-white/15 border border-white/20 text-sm backdrop-blur-sm transition-all hover:bg-[#E4405F]" style="border-radius:5px; padding: 2px 0 2px 3px;">
+                      <i class="fab fa-instagram"></i> <span>Instagram</span>
+                    </a>
+                    <a href="#" target="_blank"
+                      class="flex h-11 items-center justify-start gap-3 bg-white/15 border border-white/20 text-sm backdrop-blur-sm transition-all hover:bg-[#BD081C]" style="border-radius:5px; padding: 2px 0 2px 3px;">
+                      <i class="fab fa-pinterest"></i> <span>Pinterest</span>
+                    </a>
+                    <a href="#" target="_blank"
+                      class="flex h-11 items-center justify-start gap-3 bg-white/15 border border-white/20 text-sm backdrop-blur-sm transition-all hover:bg-[#00F2EA]" style="border-radius:5px; padding: 2px 0 2px 3px;">
+                      <i class="fab fa-tiktok"></i> <span>TikTok</span>
+                    </a>
+                    <a href="#" target="_blank"
+                      class="flex h-11 items-center justify-start gap-3 bg-white/15 border border-white/20 text-sm backdrop-blur-sm transition-all hover:bg-[#FF0000]" style="border-radius:5px; padding: 2px 0 2px 3px;">
+                      <i class="fab fa-youtube"></i> <span>YouTube</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

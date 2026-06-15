@@ -1,0 +1,291 @@
+/* ============================================================
+   BODYPAINTING PAGE � Pure CSS (kein Tailwind)
+   ============================================================ */
+
+/* Schlie�-Button */
+.bp-close-btn {
+  position: fixed;
+  z-index: 50;
+  line-height: 1;
+  color: white;
+  background: rgba(128, 128, 128, 0.3);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bp-close-btn:hover { 
+  background: rgba(255, 255, 255, 0.8);
+  color: black;
+}
+
+/* Mobile: bis 479px */
+@media (max-width: 479.9px) {
+  .bp-close-btn { 
+    right: 2rem; 
+    top: 4.5rem; 
+    font-size: 2.5rem;
+  }
+}
+
+/* Small tablets: 480px - 767px */
+@media (min-width: 480px) and (max-width: 767px) {
+  .bp-close-btn { 
+    right: 2.4rem; 
+    top: 5.5rem; 
+    font-size: 2.8rem;
+  }
+}
+
+/* Tablets: 768px - 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .bp-close-btn { 
+    right: 2.8rem; 
+    top: 8rem; 
+    font-size: 3.1rem;
+  }
+}
+
+/* Desktop: 1024px und größer */
+@media (min-width: 1024px) {
+  .bp-close-btn { 
+    right: 3.5rem; 
+    top: 8.5rem; 
+    font-size: 3.4rem;
+  }
+}
+
+/* Desktop: 1200px und größer */
+@media (min-width: 1200px) {
+  .bp-close-btn { 
+    right: 3.5rem; 
+    top: 9rem; 
+    font-size: 3.4rem;
+  }
+}
+
+/* Seiten-Container */
+.bp-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  margin-top: 50px;
+}
+
+@media (min-width: 768px) {
+  .bp-content {
+    margin-top: 75px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .bp-content {
+    margin-top: 78px;
+  }
+}
+
+/* Galerie-Grid: 3 Spalten, 4 Zeilen */
+.bp-grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Jede Zelle: quadratisch, f�llt volle Spaltenbreite */
+.bp-cell {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Bild f�llt die Zelle komplett */
+.bp-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+.bp-img:hover { transform: scale(1.05); 
+}
+
+/* Video-Bereich */
+.bp-video-section { margin-bottom: 3rem; }
+
+.bp-video-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+@media (min-width: 768px) {
+  .bp-video-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.bp-video-cell {
+  position: relative;
+  overflow: hidden;
+  background: black;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  aspect-ratio: 16 / 9;
+}
+
+.bp-video-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.2);
+}
+.bp-video-placeholder p { color: rgba(255, 255, 255, 0.6); }
+
+.bp-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Sandmalerei: nur 2 Fotos */
+#page-sandmalerei .bp-grid {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(1, 1fr);
+  margin-bottom: 1rem;
+}
+
+/* ======== THEMA-KACHELN (Ebene 2) ======== */
+
+.thema-tile {
+  cursor: pointer;
+}
+
+.thema-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.thema-tile:hover .thema-overlay {
+  opacity: 1;
+}
+
+.thema-title {
+  color: #fff;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 0 0.75rem;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+}
+
+/* Lightbox Titel - Klassischer Look */
+#lightbox-title p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+@media (max-width: 479.9px) {
+  .thema-title {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 480px) {
+  .thema-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .thema-title {
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .thema-title {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .thema-title {
+    font-size: 2.4rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .thema-title {
+    font-size: 2.6rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .thema-title {
+    font-size: 2.8rem;
+  }
+}
+
+
+/* ======== THEMA-GALERIE (Ebene 3) ======== */
+
+.thema-gallery-page {
+  display: none;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.thema-gallery-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.thema-back-btn {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.thema-back-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.thema-gallery-title {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+}

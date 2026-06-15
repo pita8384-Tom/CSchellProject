@@ -1,0 +1,247 @@
+/* intro.css - Styling for Intro Page Paragraphs */
+
+/* Responsive font sizes for intro paragraphs */
+@media (max-width: 479px) {
+    .intro-detail-page p {
+        font-size: 14px !important;
+    }
+}
+
+.intro-detail-page p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    color: white;
+    line-height: 1.6;
+    font-size: 22px;
+}
+
+/* Responsive font sizes for intro paragraphs */
+@media (min-width: 480px) {
+    .intro-detail-page p {
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 769px) {
+    .intro-detail-page p {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .intro-detail-page p {
+        font-size: 23px;
+    }
+}
+
+@media (min-width: 1201px) {
+    .intro-detail-page p {
+        font-size: 26px;
+    }
+}
+
+@media (min-width: 1401px) {
+    .intro-detail-page p {
+        font-size: 29px;
+    }
+}
+
+/* Responsive margin-top for intro content container */
+.intro-content-wrapper {
+    margin-top: 35px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+@media (min-width: 768px) {
+    .intro-content-wrapper {
+        margin-top: 60px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .intro-content-wrapper {
+        margin-top: 70px;
+    }
+}
+
+/* Decorative separator line for mobile only */
+.intro-separator {
+    display: none;
+    text-align: center;
+    margin: 2.5rem 0;
+    position: relative;
+    overflow: visible;
+}
+
+.intro-separator::before {
+    content: '❦';
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+}
+
+.intro-separator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.2) 20%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.2) 80%,
+        transparent
+    );
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .intro-separator {
+        display: block;
+    }
+}
+
+/* Margin-bottom for grid containers */
+.intro-detail-page .grid {
+    margin-bottom: 0rem;
+}
+
+/* Odd-numbered separators with zero margins */
+.intro-separator-odd {
+    display: none;
+    text-align: center;
+    margin: 0rem;
+    position: relative;
+    overflow: visible;
+}
+
+.intro-separator-odd::before {
+    content: '❦';
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+}
+
+.intro-separator-odd::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.2) 20%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.2) 80%,
+        transparent
+    );
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .intro-separator-odd {
+        display: block;
+    }
+}
+
+/* Second separator for text sections with zero margins */
+.intro-text-separator {
+    display: none;
+    text-align: center;
+    margin: 0rem;
+    position: relative;
+    overflow: visible;
+}
+
+.intro-text-separator::before {
+    content: '✧';
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-shadow: 0 0 6px rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+}
+
+.intro-text-separator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.1) 30%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.1) 70%,
+        transparent
+    );
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .intro-text-separator {
+        display: block;
+    }
+}
+
+/* ============================================================
+   "Zurück zur Übersicht" Button Styling & Responsive Margin
+   ============================================================ */
+
+.back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem; /* Abstand zwischen Icon und Text */
+  font-size: 1rem; /* Basis-Schriftgröße */
+  font-weight: 600; /* Semibold */
+  color: white;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.3); /* bg-white/30 */
+  backdrop-filter: blur(4px); /* backdrop-blur-sm */
+  border-radius: 5px;
+  padding: 0.5rem 1rem; /* Innenabstand */
+  width: 100%; /* Volle Breite des Elternelements */
+  cursor: pointer;
+  margin-top: 2.5rem; /* Basis-Abstand nach oben für kleine Bildschirme */
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.4); /* hover:bg-white/40 */
+}
+
+/* Responsive Anpassung des oberen Abstands */
+@media (min-width: 480px) {
+  .back-button { margin-top: 3.5rem; }
+}
+
+@media (min-width: 769px) {
+  .back-button { margin-top: 4.5rem; }
+}
+
+@media (min-width: 1025px) {
+  .back-button { margin-top: 5.5rem; }
+}
+
+@media (min-width: 1201px) {
+  .back-button { margin-top: 6.5rem; }
+}

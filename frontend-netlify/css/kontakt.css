@@ -1,0 +1,145 @@
+/* ============================================================
+   KONTAKT SEITE - Responsive Typography
+   ============================================================ */
+
+/* Impressum & Social Überschriften (h3) */
+.grid.items-start h3 {
+  font-size: 1.25rem; /* Base: 480px */
+}
+
+@media (min-width: 768px) {
+  .grid.items-start h3 {
+    font-size: 1.5rem; /* 768px */
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid.items-start h3 {
+    font-size: 1.75rem; /* 1024px */
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid.items-start h3 {
+    font-size: 2rem; /* 1200px+ */
+  }
+}
+
+/* Namen und Labels (text-lg) */
+.grid.items-start p.text-lg {
+  font-size: 1rem; /* Base: 480px */
+}
+
+@media (min-width: 768px) {
+  .grid.items-start p.text-lg {
+    font-size: 1.125rem; /* 768px */
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid.items-start p.text-lg {
+    font-size: 1.25rem; /* 1024px */
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid.items-start p.text-lg {
+    font-size: 1.375rem; /* 1200px+ */
+  }
+}
+
+/* Normale Paragraphen (Adresse, E-Mail, etc.) */
+.grid.items-start p:not(.text-lg) {
+  font-size: 0.9rem; /* Base: 480px */
+}
+
+@media (min-width: 768px) {
+  .grid.items-start p:not(.text-lg) {
+    font-size: 1rem; /* 768px */
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid.items-start p:not(.text-lg) {
+    font-size: 1.1rem; /* 1024px */
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid.items-start p:not(.text-lg) {
+    font-size: 1.2rem; /* 1200px+ */
+  }
+}
+
+/* Social Media Button Text */
+.grid.grid-cols-2 a span {
+  font-size: 0.85rem; /* Base: 480px */
+}
+
+@media (min-width: 768px) {
+  .grid.grid-cols-2 a span {
+    font-size: 0.95rem; /* 768px */
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid.grid-cols-2 a span {
+    font-size: 1rem; /* 1024px */
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid.grid-cols-2 a span {
+    font-size: 1.1rem; /* 1200px+ */
+  }
+}
+
+/* Social Media Button Padding (Top & Bottom) */
+.grid.grid-cols-2 a {
+  padding-top: 4.5px !important;
+  padding-bottom: 2px !important;
+}
+
+@media (min-width: 768px) {
+  .grid.grid-cols-2 a {
+    padding-top: 5px !important;
+    padding-bottom: 4px !important;
+    padding-left: 4px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid.grid-cols-2 a {
+    padding-top: 7px !important;
+    padding-bottom: 4.5px !important;
+    padding-left: 4px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid.grid-cols-2 a {
+    padding-top: 8px !important;
+    padding-bottom: 6px !important;
+    padding-left: 6px !important;
+  }
+}
+
+/* ============================================================
+   KONTAKTFORMULAR VALIDIERUNG
+   ============================================================ */
+
+/* !important wird verwendet, um Tailwind-Standardklassen (wie bg-black) sicher zu überschreiben */
+
+/* Korrekt ausgefüllt -> Hintergrund wird grau */
+.is-valid {
+  background-color: rgba(255, 255, 255, 0.4) !important; 
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  color: #ffffff !important;
+}
+
+/* Fehlerhaft ausgefüllt -> Hintergrund wird rot */
+.is-invalid {
+  background-color: #991b1b !important; 
+  border-color: #dc2626 !important;
+  color: #ffffff !important;
+}
