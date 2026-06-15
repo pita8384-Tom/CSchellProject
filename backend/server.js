@@ -14,6 +14,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const MEDIA_ROOT = path.join(__dirname, "img");
 
+app.get("/", (req, res) => {
+  res.send("Backend is running 🚀");
+});
+
 const FRONTEND_ORIGINS = (process.env.FRONTEND_ORIGINS || "")
   .split(",")
   .map((origin) => origin.trim())
@@ -679,9 +683,16 @@ async function startServer() {
   app.listen(PORT, () => {
     console.log("\n" + "=".repeat(50));
     console.log(`✅ SERVER LÄUFT!`);
-    console.log(`🌍 URL: http://localhost:${PORT}`);
-    console.log(`📤 Upload: http://localhost:${PORT}/api/upload`);
-    console.log(`🖼️  Galerie: http://localhost:${PORT}/api/gallery/bodypainting`);
+    
+    //Hostmaschine könnte localhost
+    //console.log(`🌍 URL: http://localhost:${PORT}`);
+    //console.log(`📤 Upload: http://localhost:${PORT}/api/upload`);
+    //console.log(`🖼️  Galerie: http://localhost:${PORT}/api/gallery/bodypainting`);
+
+    // Render setzt automatisch die korrekte PUBLIC_API_URL, daher hier nur allgemeine Info:
+    console.log(`🌍 URL: https://cschell-backend.onrender.com`);
+    console.log(`📤 Upload: /api/upload`);
+    console.log(`🖼️  Galerie: /api/gallery/bodypainting`);
     console.log(`🗄️  Datenbank: ${DB_PATH}`);
     console.log("=".repeat(50) + "\n");
   });
