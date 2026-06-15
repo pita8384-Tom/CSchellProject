@@ -538,8 +538,14 @@ app.post("/api/contact", async (req, res) => {
 });
 
 // ============= STATISCHE DATEIEN =============
+// static fájlok
 app.use("/img", express.static(MEDIA_ROOT));
 app.use(express.static(path.join(__dirname, "../frontend")));
+
+// DEBUG (ideiglenes)
+console.log("__dirname:", __dirname);
+console.log("frontend path:", path.join(__dirname, "../frontend"));
+//app.use(express.static(path.join(__dirname, "../frontend")));
 
 //app.use(express.static(path.join(__dirname, "..", "frontend")));
 
