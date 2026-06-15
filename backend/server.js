@@ -14,17 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const MEDIA_ROOT = path.join(__dirname, "img");
 
-<<<<<<< HEAD
-//Backend-Server testweise erreichbar, wenn du die Zeilen unten einkommentierst. In Produktion wird der Server über Render oder einen anderen Host gestartet.
-//app.get("/", (req, res) => {
-  //res.send("Backend is running 🚀");
-//});
-=======
-// app.get("/", (req, res) => {
-//   res.send("Backend is running 🚀");
-// });
->>>>>>> ff94ce8a4c3739a976ff2ecf7e3ee90076faddf8
-
+// ============= CONFIG =============
 const FRONTEND_ORIGINS = (process.env.FRONTEND_ORIGINS || "")
   .split(",")
   .map((origin) => origin.trim())
