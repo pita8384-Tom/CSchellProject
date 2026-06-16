@@ -540,6 +540,11 @@ const FRONTEND_PATH = path.resolve(__dirname, "../frontend");
 // statikus fájlok
 app.use(express.static(FRONTEND_PATH));
 
+const path = require("path");
+const MEDIA_ROOT = path.resolve(__dirname, "img");
+
+app.use("/img", express.static(MEDIA_ROOT));
+
 // homepage fix
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/index.html"));
