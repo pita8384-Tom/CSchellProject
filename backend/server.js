@@ -535,16 +535,15 @@ app.post("/api/contact", async (req, res) => {
 
 // ============= STATISCHE DATEIEN =============
 // static fájlok
-app.use("/img", express.static(MEDIA_ROOT));
-app.use(express.static(path.join(__dirname, "../frontend")));
+const FRONTEND_PATH = path.resolve(__dirname, "../frontend");
 
-console.log("WORKING DIR:", process.cwd());
-console.log("__dirname:", __dirname);
-console.log("frontend path:", path.join(__dirname, "../frontend"));
+// statikus fájlok
+app.use(express.static(FRONTEND_PATH));
 
-// DEBUG (ideiglenes)
-console.log("__dirname:", __dirname);
-console.log("frontend path:", path.join(__dirname, "../frontend"));
+// homepage fix
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/index.html"));
+});
 
 // Titel / Namen eines Mediums aktualisieren (Bearbeiten)
 app.put("/api/upload/:category/:filename", async (req, res) => {
