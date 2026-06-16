@@ -538,6 +538,10 @@ app.post("/api/contact", async (req, res) => {
 app.use("/img", express.static(MEDIA_ROOT));
 app.use(express.static(path.join(__dirname, "../frontend")));
 
+console.log("WORKING DIR:", process.cwd());
+console.log("__dirname:", __dirname);
+console.log("frontend path:", path.join(__dirname, "../frontend"));
+
 // DEBUG (ideiglenes)
 console.log("__dirname:", __dirname);
 console.log("frontend path:", path.join(__dirname, "../frontend"));
